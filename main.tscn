@@ -1,0 +1,96 @@
+[gd_scene format=4 uid="uid://c0ppxpyidbemj"]
+
+[ext_resource type="Script" uid="uid://dc3gnyfho2nfk" path="res://player_main.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dtxs1sjx8bxak" path="res://textures/blocks/env.png" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://farmland.tscn" id="4_1bvp3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lquwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lquwl")
+}],
+"loop": true,
+"name": &"standing_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2yge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bvp3")
+}],
+"loop": true,
+"name": &"walk_cycle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(8, 14)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
+scenes/1/scene = ExtResource("4_1bvp3")
+
+[sub_resource type="TileSet" id="TileSet_lquwl"]
+sources/0 = SubResource("TileSetScenesCollectionSource_1bvp3")
+
+[node name="main" type="Node2D" unique_id=1077295442]
+
+[node name="background" type="Sprite2D" parent="." unique_id=1353185167]
+texture = ExtResource("1_h2yge")
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=41941786]
+script = ExtResource("1_0xm2m")
+
+[node name="player_center" type="Node2D" parent="player" unique_id=337213893]
+position = Vector2(0, 5)
+
+[node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
+sprite_frames = SubResource("SpriteFrames_lquwl")
+animation = &"standing_still"
+
+[node name="player_collision" type="CollisionShape2D" parent="player" unique_id=1575404651]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Timer" type="Timer" parent="player" unique_id=83878958]
+
+[node name="camera" type="Camera2D" parent="." unique_id=403919883]
+
+[node name="Control" type="Control" parent="camera" unique_id=21027245]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -81.0
+offset_bottom = 16.0
+
+[node name="Button" type="Button" parent="camera/Control" unique_id=1107124165]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 53.0
+offset_bottom = 23.0
+
+[node name="farmland" parent="camera" unique_id=776760931 instance=ExtResource("4_1bvp3")]
+position = Vector2(-29, 47)
+
+[node name="game_objects" type="TileMapLayer" parent="." unique_id=1661351664]
+tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAQABAAIAAAAAAAAAAQACAAIAAAAAAAAAAQADAAIAAAAAAAAAAQAEAAIAAAAAAAAAAQAFAAIAAAAAAAAAAQA=")
+tile_set = SubResource("TileSet_lquwl")

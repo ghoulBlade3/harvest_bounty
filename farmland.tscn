@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cvyevc8lqutjs"]
+
+[ext_resource type="Texture2D" uid="uid://ds3y3n86l5veu" path="res://textures/blocks/farmland_dry.png" id="1_kaipa"]
+[ext_resource type="Script" uid="uid://dkfde0mtlxf31" path="res://farmland.gd" id="1_r62q1"]
+
+[node name="farmland" type="Area2D" unique_id=776760931]
+script = ExtResource("1_r62q1")
+
+[node name="farmland_center" type="Node2D" parent="." unique_id=655519391]
+
+[node name="farmland_sprite" type="Sprite2D" parent="." unique_id=167897509]
+texture = ExtResource("1_kaipa")
