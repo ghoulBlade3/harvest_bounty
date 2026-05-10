@@ -4,6 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://dtxs1sjx8bxak" path="res://textures/blocks/env.png" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://farmland.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://djgacvs1c4vbi" path="res://textures/ui/side_panel.png" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://btqwylagupyy0" path="res://carrot_buy.gd" id="6_272bh"]
+[ext_resource type="Script" uid="uid://d3gugwqgjkfvb" path="res://carrot_select.gd" id="7_272bh"]
+[ext_resource type="FontFile" uid="uid://btuwvdh4n3pm6" path="res://textures/fonts/PixelSerif_16px_v02.ttf" id="8_5vw27"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
+scenes/1/scene = ExtResource("4_1bvp3")
+
+[sub_resource type="TileSet" id="TileSet_lquwl"]
+sources/0 = SubResource("TileSetScenesCollectionSource_1bvp3")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
 atlas = ExtResource("1_ig7tw")
@@ -42,22 +52,23 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(8, 14)
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
-scenes/1/scene = ExtResource("4_1bvp3")
-
-[sub_resource type="TileSet" id="TileSet_lquwl"]
-sources/0 = SubResource("TileSetScenesCollectionSource_1bvp3")
-
 [node name="main" type="Node2D" unique_id=1077295442]
+metadata/_edit_lock_ = true
 
 [node name="background" type="Sprite2D" parent="." unique_id=1353185167]
 texture = ExtResource("1_h2yge")
+metadata/_edit_lock_ = true
+
+[node name="game_objects" type="TileMapLayer" parent="." unique_id=1661351664]
+tile_map_data = PackedByteArray("AAABAAIAAAAAAAAAAQABAAEAAAAAAAAAAQABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQD//wAAAAAAAAAAAQD+/wAAAAAAAAAAAQD+/wEAAAAAAAAAAQD+/wIAAAAAAAAAAQD//wIAAAAAAAAAAQAAAAIAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAP//AAAAAAAAAQAAAP//AAAAAAAAAQD/////AAAAAAAAAQD+////AAAAAAAAAQA=")
+tile_set = SubResource("TileSet_lquwl")
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=41941786]
+position = Vector2(0, 36)
 script = ExtResource("1_0xm2m")
 
 [node name="player_center" type="Node2D" parent="player" unique_id=337213893]
-position = Vector2(0, 5)
+position = Vector2(0, 3)
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
 sprite_frames = SubResource("SpriteFrames_lquwl")
@@ -67,30 +78,55 @@ animation = &"standing_still"
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="Timer" type="Timer" parent="player" unique_id=83878958]
-
 [node name="camera" type="Camera2D" parent="." unique_id=403919883]
+position = Vector2(0, 6)
+metadata/_edit_lock_ = true
+
+[node name="panel_left" type="Sprite2D" parent="camera" unique_id=625535643]
+position = Vector2(-140, 0)
+texture = ExtResource("5_lquwl")
+metadata/_edit_lock_ = true
+
+[node name="panel_right" type="Sprite2D" parent="camera" unique_id=765196930]
+position = Vector2(140, 0)
+texture = ExtResource("5_lquwl")
+metadata/_edit_lock_ = true
 
 [node name="Control" type="Control" parent="camera" unique_id=21027245]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -160.0
 offset_top = -90.0
-offset_right = -81.0
-offset_bottom = 16.0
+offset_right = 160.0
+offset_bottom = 90.0
+metadata/_edit_lock_ = true
 
-[node name="Button" type="Button" parent="camera/Control" unique_id=1107124165]
-visible = false
+[node name="carrot_buy" type="Button" parent="camera/Control" unique_id=1107124165]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 15.0
-offset_right = 53.0
-offset_bottom = 23.0
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 38.0
+offset_bottom = 26.0
+script = ExtResource("6_272bh")
 
-[node name="farmland" parent="camera" unique_id=776760931 instance=ExtResource("4_1bvp3")]
-position = Vector2(-29, 47)
+[node name="carrot" type="Button" parent="camera/Control" unique_id=203365693]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 16.0
+offset_right = 27.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 3
+script = ExtResource("7_272bh")
 
-[node name="game_objects" type="TileMapLayer" parent="." unique_id=1661351664]
-tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAQABAAIAAAAAAAAAAQACAAIAAAAAAAAAAQADAAIAAAAAAAAAAQAEAAIAAAAAAAAAAQAFAAIAAAAAAAAAAQA=")
-tile_set = SubResource("TileSet_lquwl")
+[node name="carrot_font" type="RichTextLabel" parent="camera/Control" unique_id=1541986792]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 16.0
+offset_right = 27.0
+offset_bottom = 29.0
+theme_override_fonts/normal_font = ExtResource("8_5vw27")
+theme_override_font_sizes/normal_font_size = 11
+text = "0x"
+horizontal_alignment = 1
+vertical_alignment = 1

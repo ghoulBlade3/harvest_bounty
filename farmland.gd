@@ -1,10 +1,14 @@
 extends Area2D
 @onready var farmland_center: Node2D = $farmland_center
 @onready var farmland_sprite: Sprite2D = $farmland_sprite
+@onready var farmland_plant: Sprite2D = $farmland_plant
 @onready var player: CharacterBody2D = $"../../player"
+@onready var farmland_selection_overlay: Sprite2D = $farmland_selection_overlay
+
 
 
 var isWet: bool = false
+var isGrown: bool = false
 
 
 func farmland_action() -> void:
@@ -14,8 +18,17 @@ func farmland_action() -> void:
 		player.canInteract = false
 		isWet = true
 		farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
-		player.interactableObjects.clear()
+		player.canInteract = true
 		return
+	
+	if player.inventory[player.selectedItem] > 0:
+		match player.selectedItem:
+			0:
+				farmland_plant.texture = load("res://textures/blocks/carrot_stage_0.png")
+				player.inventory[player.selectedItem] -= 1
+		
+	if isGrown:
+		print("COLLECTING GROWN THING")
 	
 	print("Ok")
 
@@ -26,9 +39,9 @@ func _process(delta: float) -> void:
 	
 	
 	# DO FARMLAND ACTION IF PLAYER CAN REACH IT
-	if Input.is_action_just_pressed("interact") && player.canInteract && playerDistance <= 32.0:
-		player.interactableObjects.append(playerDistance)
-		
-		
-		if playerDistance <= player.interactableObjects.min():
+	if playerDistance <= 7.9995:
+		farmland_selection_overlay.show()
+		if Input.is_action_just_pressed("interact") && player.canInteract:
 			farmland_action()
+	else:
+		farmland_selection_overlay.hide()
