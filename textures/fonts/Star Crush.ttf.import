@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Star Crush.ttf-21d030e18068d3f0327d77452d18c3
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/PixelSerif_16px_v02.ttf-9c3301e91ce168af79ebf
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false

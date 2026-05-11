@@ -15,37 +15,141 @@ scenes/1/scene = ExtResource("4_1bvp3")
 [sub_resource type="TileSet" id="TileSet_lquwl"]
 sources/0 = SubResource("TileSetScenesCollectionSource_1bvp3")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_82xsv"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(0, 48, 16, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
 atlas = ExtResource("1_ig7tw")
 region = Rect2(0, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_getpj"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(0, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(16, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(32, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(48, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cegan"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(64, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
 atlas = ExtResource("1_ig7tw")
 region = Rect2(16, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
 atlas = ExtResource("1_ig7tw")
 region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efxa6"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(16, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(32, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w48qg"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(48, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(64, 24, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lquwl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lquwl")
+"texture": SubResource("AtlasTexture_82xsv")
 }],
 "loop": true,
-"name": &"standing_still",
+"name": &"standing_back",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h2yge")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1bvp3")
+"texture": SubResource("AtlasTexture_lquwl")
 }],
 "loop": true,
-"name": &"walk_cycle",
+"name": &"standing_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_getpj")
+}],
+"loop": true,
+"name": &"standing_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaehf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_074og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cegan")
+}],
+"loop": true,
+"name": &"walk_cycle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vw27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kek77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efxa6")
+}],
+"loop": true,
+"name": &"walk_cycle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycdy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w48qg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vivmo")
+}],
+"loop": true,
+"name": &"walk_sideways",
 "speed": 5.0
 }]
 
@@ -72,7 +176,7 @@ position = Vector2(0, 3)
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
 sprite_frames = SubResource("SpriteFrames_lquwl")
-animation = &"standing_still"
+animation = &"standing_back"
 
 [node name="player_collision" type="CollisionShape2D" parent="player" unique_id=1575404651]
 position = Vector2(0, 4)
@@ -106,7 +210,7 @@ layout_mode = 0
 offset_left = 28.0
 offset_top = 16.0
 offset_right = 38.0
-offset_bottom = 26.0
+offset_bottom = 29.0
 script = ExtResource("6_272bh")
 
 [node name="carrot" type="Button" parent="camera/Control" unique_id=203365693]
@@ -125,8 +229,10 @@ offset_left = 2.0
 offset_top = 16.0
 offset_right = 27.0
 offset_bottom = 29.0
+mouse_filter = 2
+theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("8_5vw27")
-theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/normal_font_size = 12
 text = "0x"
 horizontal_alignment = 1
 vertical_alignment = 1

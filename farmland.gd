@@ -9,6 +9,7 @@ extends Area2D
 
 var isWet: bool = false
 var isGrown: bool = false
+var isPlantedOn: bool = false
 
 
 func farmland_action() -> void:
@@ -21,11 +22,13 @@ func farmland_action() -> void:
 		player.canInteract = true
 		return
 	
-	if player.inventory[player.selectedItem] > 0:
+	# PLANTS ARE PLANTED
+	if player.inventory[player.selectedItem] > 0 && isWet && not isPlantedOn:
 		match player.selectedItem:
 			0:
 				farmland_plant.texture = load("res://textures/blocks/carrot_stage_0.png")
 				player.inventory[player.selectedItem] -= 1
+				isPlantedOn = true
 		
 	if isGrown:
 		print("COLLECTING GROWN THING")
