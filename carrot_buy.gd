@@ -1,7 +1,8 @@
 extends Button
 @onready var player: CharacterBody2D = $"../../../player"
-@onready var carrot_font: RichTextLabel = $"../carrot_font"
-
+@onready var carrot_text: RichTextLabel = $"../carrot_text"
+var plantID: int = player.items["carrot"]
+#var plantID = 0
 
 
 
@@ -11,6 +12,6 @@ func _ready() -> void:
 
 
 func _button_pressed():
-	player.inventory[0] += 1
-	
-	print(player.inventory[0])
+	player.inventory[plantID] += 1
+	carrot_text.text = str(player.inventory[plantID]) + "x"
+	print(player.inventory[plantID])

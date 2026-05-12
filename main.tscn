@@ -172,7 +172,7 @@ position = Vector2(0, 36)
 script = ExtResource("1_0xm2m")
 
 [node name="player_center" type="Node2D" parent="player" unique_id=337213893]
-position = Vector2(0, 3)
+position = Vector2(0, 4)
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
 sprite_frames = SubResource("SpriteFrames_lquwl")
@@ -213,7 +213,7 @@ offset_right = 38.0
 offset_bottom = 29.0
 script = ExtResource("6_272bh")
 
-[node name="carrot" type="Button" parent="camera/Control" unique_id=203365693]
+[node name="carrot_select" type="Button" parent="camera/Control" unique_id=203365693]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 16.0
@@ -222,7 +222,7 @@ offset_bottom = 29.0
 theme_override_font_sizes/font_size = 3
 script = ExtResource("7_272bh")
 
-[node name="carrot_font" type="RichTextLabel" parent="camera/Control" unique_id=1541986792]
+[node name="carrot_text" type="RichTextLabel" parent="camera/Control" unique_id=1541986792]
 texture_filter = 1
 layout_mode = 0
 offset_left = 2.0
