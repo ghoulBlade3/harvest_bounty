@@ -10,10 +10,11 @@ var canInteract: bool = true
 
 var selectedItem: int = -1
 var items = {
-	"empty": -1,
-	"carrot": 0
+	"empty": 0,
+	"carrot": 1,
+	"torrac": 2
 }
-var inventory: Array[int] = [0, 0]
+var inventory: Array = [null, 0, 0]
 var lastLookDir: String = 'S'
 var distanceFromFarmland: float
 var last_velocity_normalized = Vector2.ZERO

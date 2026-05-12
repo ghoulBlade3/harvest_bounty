@@ -4,12 +4,17 @@ extends Area2D
 @onready var farmland_plant: Sprite2D = $farmland_plant
 @onready var player: CharacterBody2D = $"../../player"
 @onready var farmland_selection_overlay: Sprite2D = $farmland_selection_overlay
-
+@onready var button_holder: Control = $"../../camera/button_holder"
+@onready var grow_time: Timer = $grow_time
 
 
 var isWet: bool = false
 var isGrown: bool = false
 var isPlantedOn: bool = false
+
+var growthStage: int = -1
+var isGrowing: bool = false
+var crop = null
 
 
 func farmland_action() -> void:
@@ -23,16 +28,22 @@ func farmland_action() -> void:
 		return
 	
 	# PLANTS ARE PLANTED
-	if player.inventory[player.selectedItem] > 0 && isWet && not isPlantedOn:
-			
-			# PUT PLANT TEXTURE AND LOWER ITEM COUNT
-			farmland_plant.texture = load("res://textures/blocks/" + player.items.find_key(player.selectedItem) + "_stage_0.png")
-			player.inventory[player.selectedItem] -= 1
-			isPlantedOn = true
+	if player.inventory[player.selectedItem] != null:
+		if player.inventory[player.selectedItem] > 0 && isWet && not isPlantedOn:
 				
-			# UNSELECT THE ITEM IF THE PLAYER RAN OUT
-			if (player.inventory[player.selectedItem] <= 0):
-				player.selectedItem = player.items["empty"]
+				# PUT PLANT TEXTURE AND LOWER ITEM COUNT
+				crop = player.items.find_key(player.selectedItem)
+				farmland_plant.texture = load("res://textures/blocks/" + crop + "_stage_0.png")
+				player.inventory[player.selectedItem] -= 1
+				for button in button_holder.get_children():
+					button.update_text()
+					
+				# UNSELECT THE ITEM IF THE PLAYER RAN OUT
+				if (player.inventory[player.selectedItem] <= 0):
+					player.selectedItem = player.items["empty"]
+				
+				isPlantedOn = true
+				growthStage += 1
 	
 	# PLANTS ARE COLLECTED
 	if isGrown:
@@ -42,14 +53,26 @@ func farmland_action() -> void:
 
 
 
-#func _process(delta: float) -> void:
-	#var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
-	#
-	#
-	## DO FARMLAND ACTION IF PLAYER CAN REACH IT
-	#if playerDistance <= 7.9995:
-		#farmland_selection_overlay.show()
-		#if Input.is_action_just_pressed("interact") && player.canInteract:
-			#farmland_action()
-	#else:
-		#farmland_selection_overlay.hide()
+func _process(delta: float) -> void:
+	
+	if isPlantedOn:
+		if !isGrowing:
+			grow_time.start()
+			isGrowing = true
+		print(grow_time.time_left)
+		print(grow_time.is_stopped())
+		if grow_time.is_stopped() && growthStage != 3:
+			growthStage += 1
+			isGrowing = false
+			
+
+	var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
+	
+	
+	# DO FARMLAND ACTION IF PLAYER CAN REACH IT
+	if playerDistance <= 7.9995:
+		farmland_selection_overlay.show()
+		if Input.is_action_just_pressed("interact") && player.canInteract:
+			farmland_action()
+	else:
+		farmland_selection_overlay.hide()

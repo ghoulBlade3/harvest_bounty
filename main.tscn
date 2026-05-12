@@ -5,9 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://farmland.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://djgacvs1c4vbi" path="res://textures/ui/side_panel.png" id="5_lquwl"]
-[ext_resource type="Script" uid="uid://btqwylagupyy0" path="res://carrot_buy.gd" id="6_272bh"]
-[ext_resource type="Script" uid="uid://d3gugwqgjkfvb" path="res://carrot_select.gd" id="7_272bh"]
-[ext_resource type="FontFile" uid="uid://btuwvdh4n3pm6" path="res://textures/fonts/PixelSerif_16px_v02.ttf" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://brw1cni5jksvl" path="res://buttons.tscn" id="6_7mycd"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
 scenes/1/scene = ExtResource("4_1bvp3")
@@ -196,43 +194,20 @@ position = Vector2(140, 0)
 texture = ExtResource("5_lquwl")
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="camera" unique_id=21027245]
+[node name="button_holder" type="Control" parent="camera" unique_id=1210530074]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -160.0
 offset_top = -90.0
-offset_right = 160.0
+offset_right = -120.0
 offset_bottom = 90.0
-metadata/_edit_lock_ = true
 
-[node name="carrot_buy" type="Button" parent="camera/Control" unique_id=1107124165]
+[node name="buttons" parent="camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 16.0
-offset_right = 38.0
-offset_bottom = 29.0
-script = ExtResource("6_272bh")
+kPlantName = "carrot"
 
-[node name="carrot_select" type="Button" parent="camera/Control" unique_id=203365693]
+[node name="buttons2" parent="camera/button_holder" unique_id=406387381 instance=ExtResource("6_7mycd")]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 16.0
-offset_right = 27.0
-offset_bottom = 29.0
-theme_override_font_sizes/font_size = 3
-script = ExtResource("7_272bh")
-
-[node name="carrot_text" type="RichTextLabel" parent="camera/Control" unique_id=1541986792]
-texture_filter = 1
-layout_mode = 0
-offset_left = 2.0
-offset_top = 16.0
-offset_right = 27.0
-offset_bottom = 29.0
-mouse_filter = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/normal_font = ExtResource("8_5vw27")
-theme_override_font_sizes/normal_font_size = 12
-text = "0x"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_top = 30.0
+offset_bottom = 65.0
+kPlantName = "torrac"
