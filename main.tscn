@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dtxs1sjx8bxak" path="res://textures/blocks/env.png" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://farmland.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://shadow.tscn" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://djgacvs1c4vbi" path="res://textures/ui/side_panel.png" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://brw1cni5jksvl" path="res://buttons.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" path="res://buttons.tscn" id="6_7mycd"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
 scenes/1/scene = ExtResource("4_1bvp3")
@@ -172,6 +173,8 @@ script = ExtResource("1_0xm2m")
 [node name="player_center" type="Node2D" parent="player" unique_id=337213893]
 position = Vector2(0, 4)
 
+[node name="shadow" parent="player" unique_id=598471710 instance=ExtResource("5_kek77")]
+
 [node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
 sprite_frames = SubResource("SpriteFrames_lquwl")
 animation = &"walk_cycle_back"
@@ -204,6 +207,8 @@ offset_bottom = 90.0
 
 [node name="buttons" parent="camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 35.0
 kPlantName = "carrot"
 
 [node name="buttons2" parent="camera/button_holder" unique_id=406387381 instance=ExtResource("6_7mycd")]
