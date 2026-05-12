@@ -27,10 +27,6 @@ region = Rect2(0, 0, 16, 24)
 atlas = ExtResource("1_ig7tw")
 region = Rect2(0, 24, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
-atlas = ExtResource("1_ig7tw")
-region = Rect2(16, 48, 16, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
 atlas = ExtResource("1_ig7tw")
 region = Rect2(32, 48, 16, 24)
@@ -43,9 +39,9 @@ region = Rect2(48, 48, 16, 24)
 atlas = ExtResource("1_ig7tw")
 region = Rect2(64, 48, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
 atlas = ExtResource("1_ig7tw")
-region = Rect2(16, 0, 16, 24)
+region = Rect2(16, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
 atlas = ExtResource("1_ig7tw")
@@ -59,9 +55,9 @@ region = Rect2(48, 0, 16, 24)
 atlas = ExtResource("1_ig7tw")
 region = Rect2(64, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
 atlas = ExtResource("1_ig7tw")
-region = Rect2(16, 24, 16, 24)
+region = Rect2(16, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ycdy4"]
 atlas = ExtResource("1_ig7tw")
@@ -74,6 +70,10 @@ region = Rect2(48, 24, 16, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vivmo"]
 atlas = ExtResource("1_ig7tw")
 region = Rect2(64, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg77c"]
+atlas = ExtResource("1_ig7tw")
+region = Rect2(16, 24, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lquwl"]
 animations = [{
@@ -103,9 +103,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2cqfq")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_yaehf")
 }, {
 "duration": 1.0,
@@ -113,15 +110,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cegan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
 }],
 "loop": true,
 "name": &"walk_cycle_back",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5vw27")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kek77")
 }, {
@@ -130,15 +127,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_efxa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vw27")
 }],
 "loop": true,
 "name": &"walk_cycle_front",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dg77c")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ycdy4")
 }, {
@@ -147,6 +144,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vivmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg77c")
 }],
 "loop": true,
 "name": &"walk_sideways",
@@ -176,7 +176,7 @@ position = Vector2(0, 3)
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
 sprite_frames = SubResource("SpriteFrames_lquwl")
-animation = &"standing_back"
+animation = &"walk_cycle_back"
 
 [node name="player_collision" type="CollisionShape2D" parent="player" unique_id=1575404651]
 position = Vector2(0, 4)
