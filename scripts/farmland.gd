@@ -15,6 +15,12 @@ var isPlantedOn: bool = false
 var growthStage: int = -1
 var isGrowing: bool = false
 var crop = null
+const kGrowTime: float = 0.2
+
+
+
+func _ready() -> void:
+	grow_time.wait_time = kGrowTime
 
 
 func farmland_action() -> void:
@@ -53,21 +59,25 @@ func farmland_action() -> void:
 
 
 
+func add_growth_stage():
+	growthStage += 1
+	farmland_plant.texture = load("res://textures/blocks/" + crop + "_stage_" + str(growthStage) + ".png")
+	isGrowing = false
+
+
 func _process(delta: float) -> void:
 	
-	if isPlantedOn:
+	
+	# IF PLANTED CROP ISNT FULLY GROWN, START GROWING
+	if isPlantedOn && growthStage <= 1:
 		if !isGrowing:
 			grow_time.start()
 			isGrowing = true
-		print(grow_time.time_left)
-		print(grow_time.is_stopped())
-		if grow_time.is_stopped() && growthStage != 3:
-			growthStage += 1
-			isGrowing = false
-			
+		elif grow_time.time_left == 0:
+			add_growth_stage()
 
+	# TODO: move this to player
 	var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
-	
 	
 	# DO FARMLAND ACTION IF PLAYER CAN REACH IT
 	if playerDistance <= 7.9995:
