@@ -19,23 +19,24 @@ const kGrowTime: float = 0.2
 
 
 
+
 func _ready() -> void:
 	grow_time.wait_time = kGrowTime
 
 
+func farmland_water() -> void:
+	player.canInteract = false
+	isWet = true
+	farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
+	player.canInteract = true
+	return
+
+
 func farmland_action() -> void:
-	# WATER THE FARMLAND IF ITS DRY
-	if not isWet:
-		print('Farmland is getting wet')
-		player.canInteract = false
-		isWet = true
-		farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
-		player.canInteract = true
-		return
 	
 	# PLANTS ARE PLANTED
 	if player.inventory[player.selectedItem] != null:
-		if player.inventory[player.selectedItem] > 0 && isWet && not isPlantedOn:
+		if player.inventory[player.selectedItem] > 0 && not isPlantedOn:
 				
 				# PUT PLANT TEXTURE AND LOWER ITEM COUNT
 				crop = player.items.find_key(player.selectedItem)
@@ -54,9 +55,7 @@ func farmland_action() -> void:
 	# PLANTS ARE COLLECTED
 	if isGrown:
 		print("COLLECTING GROWN THING")
-	
-	print("Ok")
-
+	return
 
 
 func add_growth_stage():
@@ -67,9 +66,8 @@ func add_growth_stage():
 
 func _process(delta: float) -> void:
 	
-	
 	# IF PLANTED CROP ISNT FULLY GROWN, START GROWING
-	if isPlantedOn && growthStage <= 1:
+	if isPlantedOn && growthStage <= 1 && isWet:
 		if !isGrowing:
 			grow_time.start()
 			isGrowing = true
@@ -84,5 +82,8 @@ func _process(delta: float) -> void:
 		farmland_selection_overlay.show()
 		if Input.is_action_just_pressed("interact") && player.canInteract:
 			farmland_action()
+		if Input.is_action_just_pressed("water") && player.canInteract && not isWet:
+			farmland_water()
 	else:
 		farmland_selection_overlay.hide()
+	return
