@@ -4,10 +4,62 @@
 [ext_resource type="Texture2D" uid="uid://dtxs1sjx8bxak" path="res://textures/blocks/env.png" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://scenes/farmland.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dtib4ad7wx478" path="res://components/directional_animation_component.tscn" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://scenes/shadow.tscn" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://djgacvs1c4vbi" path="res://textures/ui/side_panel.png" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://brw1cni5jksvl" path="res://scenes/buttons.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://txj5lvywg1pn" path="res://textures/enemy/temp-enemy.png" id="8_5vw27"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5vw27")
+}],
+"loop": true,
+"name": &"standing_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5vw27")
+}],
+"loop": true,
+"name": &"standing_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5vw27")
+}],
+"loop": true,
+"name": &"standing_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5vw27")
+}],
+"loop": true,
+"name": &"walking_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5vw27")
+}],
+"loop": true,
+"name": &"walking_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5vw27")
+}],
+"loop": true,
+"name": &"walking_side",
+"speed": 5.0
+}]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
 scenes/1/scene = ExtResource("4_1bvp3")
@@ -149,69 +201,19 @@ animations = [{
 "texture": SubResource("AtlasTexture_dg77c")
 }],
 "loop": true,
-"name": &"walk_sideways",
+"name": &"walk_cycle_side",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(8, 14)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5vw27")
-}],
-"loop": true,
-"name": &"standing_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5vw27")
-}],
-"loop": true,
-"name": &"standing_front",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5vw27")
-}],
-"loop": true,
-"name": &"standing_side",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5vw27")
-}],
-"loop": true,
-"name": &"walking_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5vw27")
-}],
-"loop": true,
-"name": &"walking_front",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5vw27")
-}],
-"loop": true,
-"name": &"walking_side",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
-size = Vector2(9, 19)
-
 [node name="main" type="Node2D" unique_id=1077295442]
 metadata/_edit_lock_ = true
+
+[node name="enemy_sprite" type="AnimatedSprite2D" parent="." unique_id=1672352629]
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"standing_front"
 
 [node name="background" type="Sprite2D" parent="." unique_id=1353185167]
 texture = ExtResource("1_h2yge")
@@ -227,6 +229,8 @@ script = ExtResource("1_0xm2m")
 
 [node name="player_center" type="Node2D" parent="player" unique_id=337213893]
 position = Vector2(0, 4)
+
+[node name="directional_animation_component" parent="player" unique_id=532363149 instance=ExtResource("4_kek77")]
 
 [node name="shadow" parent="player" unique_id=598471710 instance=ExtResource("5_kek77")]
 
@@ -271,13 +275,3 @@ layout_mode = 0
 offset_top = 30.0
 offset_bottom = 65.0
 kPlantName = "torrac"
-
-[node name="enemy" type="CharacterBody2D" parent="." unique_id=1068238147]
-
-[node name="enemy_sprite" type="AnimatedSprite2D" parent="enemy" unique_id=1672352629]
-sprite_frames = SubResource("SpriteFrames_kek77")
-animation = &"walking_side"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy" unique_id=1216848373]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_4c57u")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dtib4ad7wx478"]
+
+[ext_resource type="Script" uid="uid://gp0xe2nekni" path="res://components/directional_animation_component.gd" id="1_kx5k7"]
+
+[node name="directional_animation_component" type="Node" unique_id=532363149]
+script = ExtResource("1_kx5k7")
