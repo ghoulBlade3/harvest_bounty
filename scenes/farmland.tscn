@@ -19,4 +19,5 @@ visible = false
 texture = ExtResource("3_hjufs")
 
 [node name="grow_time" type="Timer" parent="." unique_id=1217553008]
+wait_time = 2.0
 one_shot = true

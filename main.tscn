@@ -207,12 +207,16 @@ offset_bottom = 90.0
 
 [node name="buttons" parent="camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
 layout_mode = 0
-offset_top = 0.0
-offset_bottom = 35.0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 38.0
+offset_bottom = 26.0
 kPlantName = "carrot"
 
-[node name="buttons2" parent="camera/button_holder" unique_id=406387381 instance=ExtResource("6_7mycd")]
+[node name="buttons2" parent="camera/button_holder" unique_id=441015796 instance=ExtResource("6_7mycd")]
 layout_mode = 0
-offset_top = 30.0
-offset_bottom = 65.0
+offset_left = 2.0
+offset_top = 29.0
+offset_right = 38.0
+offset_bottom = 42.0
 kPlantName = "torrac"
