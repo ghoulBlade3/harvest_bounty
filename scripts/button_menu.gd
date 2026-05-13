@@ -1,4 +1,5 @@
 extends Control
+
 @onready var buy: Button = $buy
 @onready var select: Button = $select
 @onready var buttons: Control = $"."

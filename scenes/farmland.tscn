@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvyevc8lqutjs"]
 
 [ext_resource type="Texture2D" uid="uid://ds3y3n86l5veu" path="res://textures/blocks/farmland_dry.png" id="1_kaipa"]
-[ext_resource type="Script" uid="uid://dkfde0mtlxf31" path="res://farmland.gd" id="1_r62q1"]
+[ext_resource type="Script" uid="uid://dkfde0mtlxf31" path="res://scripts/farmland.gd" id="1_r62q1"]
 [ext_resource type="Texture2D" uid="uid://2bvw5n7eh2k4" path="res://textures/blocks/selection_overlay.png" id="3_hjufs"]
 
 [node name="farmland" type="Area2D" unique_id=776760931]

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name player1
 @onready var player_sprite: AnimatedSprite2D = $player_sprite
 @onready var player_center: Node2D = $player_center
 #@onready var carrot_font: RichTextLabel = $"../camera/Control/carrot_font"

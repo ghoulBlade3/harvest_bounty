@@ -7,7 +7,7 @@ func _onready() -> void:
 	entity_pos = get_parent().global_position
 
 func _draw() -> void:
-	draw_circle(entity_pos + offset, shadow_size, Color("252c45a6"))
+	draw_circle(entity_pos + offset, shadow_size, Color("252c4578"))
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://c0ppxpyidbemj"]
 
-[ext_resource type="Script" uid="uid://dc3gnyfho2nfk" path="res://player_main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dc3gnyfho2nfk" path="res://scripts/player_main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://dtxs1sjx8bxak" path="res://textures/blocks/env.png" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://farmland.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://shadow.tscn" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://scenes/farmland.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://scenes/shadow.tscn" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://djgacvs1c4vbi" path="res://textures/ui/side_panel.png" id="5_lquwl"]
-[ext_resource type="PackedScene" path="res://buttons.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://brw1cni5jksvl" path="res://scenes/buttons.tscn" id="6_7mycd"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
 scenes/1/scene = ExtResource("4_1bvp3")
