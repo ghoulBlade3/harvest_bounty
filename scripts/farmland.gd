@@ -1,5 +1,4 @@
 extends Area2D
-@onready var farmland_center: Node2D = $farmland_center
 @onready var farmland_sprite: Sprite2D = $farmland_sprite
 @onready var farmland_plant: Sprite2D = $farmland_plant
 @onready var player: CharacterBody2D = $"../../player"
@@ -13,16 +12,15 @@ extends Area2D
 var isInReach: bool = false
 
 var isWet: bool = false
-var isGrown: bool = false
 var isPlantedOn: bool = false
 
-var growthStage: int = -1
+var growthStage: int = 0
 var isGrowing: bool = false
 var crop = null
 const kGrowTime: float = 0.2
 
-var currentPlayerAnimation: StringName
-var currentPlayerSpeed: float
+var oldPlayerAnimation: StringName
+var oldPlayerSpeed: float
 
 
 func _ready() -> void:
@@ -31,11 +29,12 @@ func _ready() -> void:
 
 func farmland_water() -> void:
 	# GET CURRENT ANIMATION SO IT CAN PLAY IT AFTER WATERING IS DONE
-	currentPlayerAnimation = player_sprite.animation
+	oldPlayerAnimation = player_sprite.animation
 	
 	# GET PLAYER SPEED SO PLAYER CAN BE SET AFTER WATERING IS DONE
-	currentPlayerSpeed = player.speed
+	oldPlayerSpeed = player.speed
 	
+	# MAKE PLAYER UNABLE TO MOVE/ANIMATE && DISABLE THEIR INTERACTIONS
 	player.speed = 0.0
 	player_sprite.play("watering_side")
 	player.canInteract = false
@@ -62,11 +61,10 @@ func farmland_action() -> void:
 					player.selectedItem = player.items["empty"]
 				
 				isPlantedOn = true
-				growthStage = 0
 	
 	# PLANTS ARE COLLECTED
-	if isGrown:
-		print("COLLECTING GROWN THING")
+	if growthStage == 2:
+		print("THIS IS COLLECTED NOW")
 	return
 
 
@@ -74,8 +72,6 @@ func add_growth_stage():
 	growthStage += 1
 	farmland_plant.texture = load("res://textures/blocks/" + crop + "_stage_" + str(growthStage) + ".png")
 	isGrowing = false
-
-
 
 
 func _process(_delta: float) -> void:
@@ -91,9 +87,9 @@ func _process(_delta: float) -> void:
 	# IF PLAYER IS DONE WATERING THE FARMLAND, RETURN THEIR SPEED/ANIM BACK TO NORMAL
 	if isWet:
 		if not player_sprite.is_playing() && player.canInteract == false:
-			player.speed = currentPlayerSpeed
+			player.speed = oldPlayerSpeed
 			player.canInteract = true
-			player_sprite.play(currentPlayerAnimation)
+			player_sprite.play(oldPlayerAnimation)
 
 	 # DO FARMLAND ACTION IF PLAYER CAN REACH IT
 	if isInReach:
@@ -107,7 +103,6 @@ func _process(_delta: float) -> void:
 	return
 
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if area == player_area:
 		isInReach = true
@@ -117,15 +112,3 @@ func _on_area_exited(area: Area2D) -> void:
 	if area == player_area:
 		isInReach = false
 	return
-
-
-#func _on_player_sprite_animation_finished() -> void:
-	#print("anim_finish")
-	#if isWet:
-		#if player_watering_timer.time_left == 0 && player.canInteract == false:
-			#player.canInteract = true
-			#player.speed = currentPlayerSpeed
-			#player_sprite.play(currentPlayerAnimation)
-	#print("anim_end")
-	#print(player.canInteract)
-	#return

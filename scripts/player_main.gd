@@ -38,5 +38,3 @@ func _physics_process(delta: float) -> void:
 
 	last_velocity_normalized = velocity.normalized()
 	move_and_slide()
-
-	# CHECK DISTANCE OF NEAREST CROPS

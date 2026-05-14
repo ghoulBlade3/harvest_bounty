@@ -10,8 +10,6 @@ size = Vector2(16, 16)
 [node name="farmland" type="Area2D" unique_id=776760931]
 script = ExtResource("1_r62q1")
 
-[node name="farmland_center" type="Node2D" parent="." unique_id=655519391]
-
 [node name="farmland_sprite" type="Sprite2D" parent="." unique_id=167897509]
 texture = ExtResource("1_kaipa")
 
