@@ -8,7 +8,7 @@ func _process(delta):
 	#if velocity.normalized() != last_velocity_normalized:
 		#position.x = round(position.x)
 		#position.y = round(position.y)
-#
+
 	#last_velocity_normalized = velocity.normalized()
 
 	move_and_slide()

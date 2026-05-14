@@ -7,6 +7,6 @@ var direction: Vector2
 
 func pathfind(parent_direction, delta):
 	direction = parent_direction.direction_to(target.global_position)
-	return direction * speed * delta
+	return direction.normalized() * speed * delta
 	
 	
