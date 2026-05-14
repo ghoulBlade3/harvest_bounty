@@ -2,6 +2,7 @@ extends Area2D
 @onready var farmland_center: Node2D = $farmland_center
 @onready var farmland_sprite: Sprite2D = $farmland_sprite
 @onready var farmland_plant: Sprite2D = $farmland_plant
+@onready var farmland_hitbox: CollisionShape2D = $farmland_hitbox
 @onready var player: CharacterBody2D = $"../../player"
 @onready var farmland_selection_overlay: Sprite2D = $farmland_selection_overlay
 @onready var button_holder: Control = $"../../camera/button_holder"
@@ -50,7 +51,7 @@ func farmland_action() -> void:
 					player.selectedItem = player.items["empty"]
 				
 				isPlantedOn = true
-				growthStage += 1
+				growthStage = 0
 	
 	# PLANTS ARE COLLECTED
 	if isGrown:
@@ -74,6 +75,11 @@ func _process(delta: float) -> void:
 		elif grow_time.time_left == 0:
 			add_growth_stage()
 
+	# if farmland_hitbox.NOTIFICATION_EXIT_CANVAS
+
+
+
+	return
 	# TODO: move this to player
 	var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
 	

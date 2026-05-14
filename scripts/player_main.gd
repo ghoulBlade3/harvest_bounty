@@ -2,7 +2,8 @@ extends CharacterBody2D
 class_name player1
 @onready var player_sprite: AnimatedSprite2D = $player_sprite
 @onready var player_center: Node2D = $player_center
-#@onready var carrot_font: RichTextLabel = $"../camera/Control/carrot_font"
+@onready var game_objects: TileMapLayer = $"../game_objects"
+
 
 
 const kSpeed: float = 4800.0
@@ -16,16 +17,34 @@ var items = {
 	"torrac": 2
 }
 var inventory: Array = [null, 0, 0]
+
 var lastLookDir: String = 'S'
 var distanceFromFarmland: float
 var last_velocity_normalized = Vector2.ZERO
+
+var playerDistance
 
 
 
 func _ready():
 	player_sprite.play()
+	pass
 
 func _physics_process(delta: float) -> void:
+
+	# TODO: UNUSED STUFF REMOVE BEFORE PUSHING
+	# var playerCoordsInGrid = game_objects.local_to_map(player_center.global_position)
+	# var x = game_objects.get_cell_tile_data(playerCoordsInGrid)
+	# if x.has_method("farmland_action"):
+	# 	print("YES")
+	# else:
+	# 	print("NO")
+	# game_objects.erase_cell(playerCoordsInGrid)
+	# game_objects.TextureFilter
+	#var asd = game_objects.get_meta(playerCoordsInGrid)
+	
+	
+	
 	# PLAYER MOVEMENT
 	var pMoveDir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	pMoveDir = pMoveDir.normalized()
@@ -71,8 +90,4 @@ func _physics_process(delta: float) -> void:
 
 	last_velocity_normalized = velocity.normalized()
 	move_and_slide()
-	
-	
-	
-	# CHECK DISTANCE OF NEAREST CROPS
-	
+	pass
