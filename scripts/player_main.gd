@@ -1,11 +1,9 @@
 extends CharacterBody2D
 class_name player1
 @onready var player_sprite: AnimatedSprite2D = $player_sprite
-@onready var player_center: Node2D = $player_center
-#@onready var carrot_font: RichTextLabel = $"../camera/Control/carrot_font"
 @onready var directional_animation_component: dir_anim_compoment = $directional_animation_component
 
-const kSpeed: float = 4800.0
+var speed: float = 4800.0
 var health: int = 5
 var canInteract: bool = true
 
@@ -20,16 +18,18 @@ var lastLookDir: String = 'S'
 var last_velocity_normalized = Vector2.ZERO
 
 func _ready():
+	player_sprite.sprite_frames.set_animation_loop("watering_side", false)
 	player_sprite.play()
 
 func _physics_process(delta: float) -> void:
 	# PLAYER MOVEMENT
 	var pMoveDir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	pMoveDir = pMoveDir.normalized()
-	pMoveDir *= kSpeed * delta
+	pMoveDir *= speed * delta
 	velocity = pMoveDir
 
-	directional_animation_component.dir_animation(player_sprite, pMoveDir)
+	if canInteract:
+		directional_animation_component.dir_animation(player_sprite, pMoveDir)
 
 	# JITTER FIX
 	if velocity.normalized() != last_velocity_normalized:

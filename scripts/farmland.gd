@@ -2,12 +2,13 @@ extends Area2D
 @onready var farmland_center: Node2D = $farmland_center
 @onready var farmland_sprite: Sprite2D = $farmland_sprite
 @onready var farmland_plant: Sprite2D = $farmland_plant
-@onready var farmland_hitbox: CollisionShape2D = $farmland_hitbox
 @onready var player: CharacterBody2D = $"../../player"
 @onready var farmland_selection_overlay: Sprite2D = $farmland_selection_overlay
 @onready var button_holder: Control = $"../../camera/button_holder"
 @onready var grow_time: Timer = $grow_time
 @onready var player_area: Area2D = $"../../player/player_area"
+@onready var player_sprite: AnimatedSprite2D = $"../../player/player_sprite"
+
 
 var isInReach: bool = false
 
@@ -20,7 +21,8 @@ var isGrowing: bool = false
 var crop = null
 const kGrowTime: float = 0.2
 
-
+var currentPlayerAnimation: StringName
+var currentPlayerSpeed: float
 
 
 func _ready() -> void:
@@ -28,10 +30,17 @@ func _ready() -> void:
 
 
 func farmland_water() -> void:
+	# GET CURRENT ANIMATION SO IT CAN PLAY IT AFTER WATERING IS DONE
+	currentPlayerAnimation = player_sprite.animation
+	
+	# GET PLAYER SPEED SO PLAYER CAN BE SET AFTER WATERING IS DONE
+	currentPlayerSpeed = player.speed
+	
+	player.speed = 0.0
+	player_sprite.play("watering_side")
 	player.canInteract = false
 	isWet = true
 	farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
-	player.canInteract = true
 	return
 
 
@@ -78,14 +87,14 @@ func _process(_delta: float) -> void:
 			isGrowing = true
 		elif grow_time.time_left == 0:
 			add_growth_stage()
+	
+	# IF PLAYER IS DONE WATERING THE FARMLAND, RETURN THEIR SPEED/ANIM BACK TO NORMAL
+	if isWet:
+		if not player_sprite.is_playing() && player.canInteract == false:
+			player.speed = currentPlayerSpeed
+			player.canInteract = true
+			player_sprite.play(currentPlayerAnimation)
 
-
-	# if farmland_hitbox.NOTIFICATION_EXIT_CANVAS
-
-	# if farmland_hitbox.get_property_list
-
-
-	 #var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
 	 # DO FARMLAND ACTION IF PLAYER CAN REACH IT
 	if isInReach:
 		farmland_selection_overlay.show()
@@ -108,3 +117,15 @@ func _on_area_exited(area: Area2D) -> void:
 	if area == player_area:
 		isInReach = false
 	return
+
+
+#func _on_player_sprite_animation_finished() -> void:
+	#print("anim_finish")
+	#if isWet:
+		#if player_watering_timer.time_left == 0 && player.canInteract == false:
+			#player.canInteract = true
+			#player.speed = currentPlayerSpeed
+			#player_sprite.play(currentPlayerAnimation)
+	#print("anim_end")
+	#print(player.canInteract)
+	#return

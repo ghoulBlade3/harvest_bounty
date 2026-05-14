@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func update_text():
-	text.text = str(player.inventory[plantID])
+	text.text = str(player.inventory[plantID]) + 'x'
 
 # PLAYER BUYS THING IF THEY HAVE MONEY
 func buy_function():
