@@ -17,7 +17,6 @@ var items = {
 }
 var inventory: Array = [null, 0, 0]
 var lastLookDir: String = 'S'
-var distanceFromFarmland: float
 var last_velocity_normalized = Vector2.ZERO
 
 func _ready():

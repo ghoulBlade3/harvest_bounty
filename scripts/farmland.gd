@@ -2,11 +2,14 @@ extends Area2D
 @onready var farmland_center: Node2D = $farmland_center
 @onready var farmland_sprite: Sprite2D = $farmland_sprite
 @onready var farmland_plant: Sprite2D = $farmland_plant
+@onready var farmland_hitbox: CollisionShape2D = $farmland_hitbox
 @onready var player: CharacterBody2D = $"../../player"
 @onready var farmland_selection_overlay: Sprite2D = $farmland_selection_overlay
 @onready var button_holder: Control = $"../../camera/button_holder"
 @onready var grow_time: Timer = $grow_time
+@onready var player_area: Area2D = $"../../player/player_area"
 
+var isInReach: bool = false
 
 var isWet: bool = false
 var isGrown: bool = false
@@ -19,23 +22,24 @@ const kGrowTime: float = 0.2
 
 
 
+
 func _ready() -> void:
 	grow_time.wait_time = kGrowTime
 
 
+func farmland_water() -> void:
+	player.canInteract = false
+	isWet = true
+	farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
+	player.canInteract = true
+	return
+
+
 func farmland_action() -> void:
-	# WATER THE FARMLAND IF ITS DRY
-	if not isWet:
-		print('Farmland is getting wet')
-		player.canInteract = false
-		isWet = true
-		farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
-		player.canInteract = true
-		return
 	
 	# PLANTS ARE PLANTED
 	if player.inventory[player.selectedItem] != null:
-		if player.inventory[player.selectedItem] > 0 && isWet && not isPlantedOn:
+		if player.inventory[player.selectedItem] > 0 && not isPlantedOn:
 				
 				# PUT PLANT TEXTURE AND LOWER ITEM COUNT
 				crop = player.items.find_key(player.selectedItem)
@@ -49,14 +53,12 @@ func farmland_action() -> void:
 					player.selectedItem = player.items["empty"]
 				
 				isPlantedOn = true
-				growthStage += 1
+				growthStage = 0
 	
 	# PLANTS ARE COLLECTED
 	if isGrown:
 		print("COLLECTING GROWN THING")
-	
-	print("Ok")
-
+	return
 
 
 func add_growth_stage():
@@ -65,24 +67,44 @@ func add_growth_stage():
 	isGrowing = false
 
 
-func _process(delta: float) -> void:
-	
+
+
+func _process(_delta: float) -> void:
 	
 	# IF PLANTED CROP ISNT FULLY GROWN, START GROWING
-	if isPlantedOn && growthStage <= 1:
+	if isPlantedOn && growthStage <= 1 && isWet:
 		if !isGrowing:
 			grow_time.start()
 			isGrowing = true
 		elif grow_time.time_left == 0:
 			add_growth_stage()
 
-	# TODO: move this to player
-	var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
-	
-	# DO FARMLAND ACTION IF PLAYER CAN REACH IT
-	if playerDistance <= 7.9995:
+
+	# if farmland_hitbox.NOTIFICATION_EXIT_CANVAS
+
+	# if farmland_hitbox.get_property_list
+
+
+	 #var playerDistance: float = farmland_center.global_position.distance_to(player.player_center.global_position)
+	 # DO FARMLAND ACTION IF PLAYER CAN REACH IT
+	if isInReach:
 		farmland_selection_overlay.show()
 		if Input.is_action_just_pressed("interact") && player.canInteract:
 			farmland_action()
+		if Input.is_action_just_pressed("water") && player.canInteract && not isWet:
+			farmland_water()
 	else:
 		farmland_selection_overlay.hide()
+	return
+
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area == player_area:
+		isInReach = true
+	return
+
+func _on_area_exited(area: Area2D) -> void:
+	if area == player_area:
+		isInReach = false
+	return
