@@ -4,7 +4,7 @@ extends Control
 @onready var select: Button = $select
 @onready var buttons: Control = $"."
 @onready var text: RichTextLabel = $text
-@onready var player: CharacterBody2D = $"../../../player"
+@onready var player: CharacterBody2D = $"../../../../player"
 
 @export var kPlantName: String = ""
 var plantID = null

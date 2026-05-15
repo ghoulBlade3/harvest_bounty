@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ch4fyw3fq1a75"]
 
 [ext_resource type="Texture2D" uid="uid://csceohidwrruq" path="res://textures/player/attack.png" id="1_2tl33"]
+[ext_resource type="Script" uid="uid://dyc3336yv01sg" path="res://scenes/player_attack.gd" id="1_pqjam"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tl33"]
 atlas = ExtResource("1_2tl33")
@@ -33,18 +34,24 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qywsn")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 10.0
+"speed": 5.0
 }]
 
-[node name="Area2D" type="Area2D" unique_id=1135473216]
+[node name="player_attack" type="Area2D" unique_id=1135473216]
+script = ExtResource("1_pqjam")
+attack_damage = 1.0
+knockback_amnt = 25.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=463895561]
+[node name="attack_animation" type="AnimatedSprite2D" parent="." unique_id=463895561]
 sprite_frames = SubResource("SpriteFrames_yt0id")
 animation = &"attack"
-frame = 3
+frame = 2
 frame_progress = 0.6791873
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2098447188]
+[node name="attack_collision" type="CollisionPolygon2D" parent="." unique_id=2098447188]
 polygon = PackedVector2Array(-6, 8, -9, 3, -10, -4, 0, -10, 10, -4, 9, 3, 6, 8)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="attack_animation" to="." method="_on_attack_animation_animation_finished"]

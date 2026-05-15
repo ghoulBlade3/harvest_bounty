@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://2w7l82md8pj2"]
+
+[node name="hurtbox" type="Area2D" unique_id=1134379180]

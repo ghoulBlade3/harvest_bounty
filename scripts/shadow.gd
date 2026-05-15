@@ -13,5 +13,6 @@ func _draw() -> void:
 	pass
 
 # redraw the circle every physics frame
-func _physics_process(delta: float) -> void:
+func _physics_process(_float) -> void:
 	queue_redraw()
+ 
