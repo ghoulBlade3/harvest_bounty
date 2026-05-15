@@ -38,3 +38,11 @@ func _physics_process(delta: float) -> void:
 
 	last_velocity_normalized = velocity.normalized()
 	move_and_slide()
+
+
+func _consume_food(foodItem: String):
+	match foodItem:
+		"carrot":
+			print("Carrot consume")
+		"torrac":
+			print("Torrac consume")

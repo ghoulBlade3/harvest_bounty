@@ -5,13 +5,15 @@ extends Control
 @onready var buttons: Control = $"."
 @onready var text: RichTextLabel = $text
 @onready var player: CharacterBody2D = $"../../../player"
-
+@onready var icon: Sprite2D = $icon
 @export var kPlantName: String = ""
+
 var plantID = null
 
 
 func _ready() -> void:
 	plantID = player.items[kPlantName]
+	icon.texture = load("res://textures/ui/icon_" + kPlantName + ".png")
 	buy.pressed.connect(buy_function)
 	select.pressed.connect(select_function)
 

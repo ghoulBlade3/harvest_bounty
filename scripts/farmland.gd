@@ -35,9 +35,10 @@ func farmland_water() -> void:
 	oldPlayerSpeed = player.speed
 	
 	# MAKE PLAYER UNABLE TO MOVE/ANIMATE && DISABLE THEIR INTERACTIONS
+	player.canInteract = false
 	player.speed = 0.0
 	player_sprite.play("watering_side")
-	player.canInteract = false
+
 	isWet = true
 	farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
 	return
@@ -83,6 +84,14 @@ func _process(_delta: float) -> void:
 			isGrowing = true
 		elif grow_time.time_left == 0:
 			add_growth_stage()
+			
+	
+	# IF PLAYER ISNT IN REACH OF FARMLAND, STOP CODE HERE
+	if !isInReach:
+		farmland_selection_overlay.hide()
+		return
+	farmland_selection_overlay.show()
+	
 	
 	# IF PLAYER IS DONE WATERING THE FARMLAND, RETURN THEIR SPEED/ANIM BACK TO NORMAL
 	if isWet:
@@ -91,24 +100,22 @@ func _process(_delta: float) -> void:
 			player.canInteract = true
 			player_sprite.play(oldPlayerAnimation)
 
-	 # DO FARMLAND ACTION IF PLAYER CAN REACH IT
-	if isInReach:
-		farmland_selection_overlay.show()
-		if Input.is_action_just_pressed("interact") && player.canInteract:
-			farmland_action()
-		if Input.is_action_just_pressed("water") && player.canInteract && not isWet:
-			farmland_water()
-	else:
-		farmland_selection_overlay.hide()
+	 # DO FARMLAND ACTIONS
+	if Input.is_action_just_pressed("interact") && player.canInteract:
+		farmland_action()
+	if Input.is_action_just_pressed("water") && player.canInteract && not isWet:
+		farmland_water()
 	return
 
 
 func _on_area_entered(area: Area2D) -> void:
+	# DETECT PLAYER ENTERING
 	if area == player_area:
 		isInReach = true
 	return
 
 func _on_area_exited(area: Area2D) -> void:
+	# DETECT PLAYER LEAVING
 	if area == player_area:
 		isInReach = false
 	return

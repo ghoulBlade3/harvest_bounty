@@ -8,7 +8,7 @@ var last_velocity_normalized = Vector2.ZERO
 
 func _physics_process(delta):
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 2400 * delta 
+	velocity = direction * -2400 * delta 
 	
 	directional_animation_component.dir_animation(sprite, direction)
 	
