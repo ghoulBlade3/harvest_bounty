@@ -5,12 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://nu1hrn2yt5fi" path="res://textures/player/player.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cvyevc8lqutjs" path="res://scenes/farmland.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dtib4ad7wx478" path="res://components/directional_animation_component.tscn" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://bgtuflughs7qw" path="res://components/health_component.tscn" id="5_efxa6"]
 [ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://scenes/shadow.tscn" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://djgacvs1c4vbi" path="res://textures/ui/side_panel.png" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://brw1cni5jksvl" path="res://scenes/buttons.tscn" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://dqq2uo8oilgpr" path="res://textures/player/water_test.png" id="8_4c57u"]
-[ext_resource type="Texture2D" uid="uid://b23lps3fygynn" path="res://textures/enemy/bounty-hunter.png" id="10_4c57u"]
-[ext_resource type="Script" uid="uid://pkut6cev4m04" path="res://enemy_bounty_hunter.gd" id="10_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cjbbyfmd86ruy" path="res://scenes/enemy_bounty_hunter.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://ch4fyw3fq1a75" path="res://scenes/player_attack.tscn" id="11_dg77c"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_efxa6"]
+distance = 38.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dg77c"]
+normal = Vector2(5.528547e-08, 1)
+distance = 2.0
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1bvp3"]
 scenes/1/scene = ExtResource("4_1bvp3")
@@ -180,147 +188,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(8, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u8w0"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(0, 24, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0odxb"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(0, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lswn8"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(0, 48, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a6jrf"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(16, 24, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuqvo"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(32, 24, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(48, 24, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kq58d"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(64, 24, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_seu75"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(16, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_htxhm"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(32, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jq2sk"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(48, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4k2k6"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(64, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rl1p"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(16, 48, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ok6jj"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(32, 48, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_facbu"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(48, 48, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1qrp"]
-atlas = ExtResource("10_4c57u")
-region = Rect2(64, 48, 16, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_come4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1u8w0")
-}],
-"loop": true,
-"name": &"standing_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0odxb")
-}],
-"loop": true,
-"name": &"standing_front",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lswn8")
-}],
-"loop": true,
-"name": &"standing_side",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a6jrf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuqvo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qsp4k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kq58d")
-}],
-"loop": true,
-"name": &"walk_cycle_back",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_seu75")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_htxhm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jq2sk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4k2k6")
-}],
-"loop": true,
-"name": &"walk_cycle_front",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0rl1p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ok6jj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_facbu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b1qrp")
-}],
-"loop": true,
-"name": &"walk_cycle_side",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
-size = Vector2(6, 21)
-
 [node name="main" type="Node2D" unique_id=1077295442]
 metadata/_edit_lock_ = true
 
@@ -328,12 +195,60 @@ metadata/_edit_lock_ = true
 texture = ExtResource("1_h2yge")
 metadata/_edit_lock_ = true
 
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=79649255]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1731070938]
+position = Vector2(-159, -7)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_efxa6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1875901583]
+position = Vector2(123, 11)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_dg77c")
+
 [node name="game_objects" type="TileMapLayer" parent="." unique_id=1661351664]
 tile_map_data = PackedByteArray("AAABAAIAAAAAAAAAAQABAAEAAAAAAAAAAQABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQD//wAAAAAAAAAAAQD+/wAAAAAAAAAAAQD+/wEAAAAAAAAAAQD+/wIAAAAAAAAAAQD//wIAAAAAAAAAAQAAAAIAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAP//AAAAAAAAAQAAAP//AAAAAAAAAQD/////AAAAAAAAAQD+////AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_lquwl")
 
 [node name="farmland_connector" type="Node2D" parent="game_objects" unique_id=1418668154]
 position = Vector2(0, -180)
+
+[node name="camera" type="Camera2D" parent="game_objects" unique_id=403919883]
+position = Vector2(0, 6)
+metadata/_edit_lock_ = true
+
+[node name="panel_left" type="Sprite2D" parent="game_objects/camera" unique_id=625535643]
+position = Vector2(-140, 0)
+texture = ExtResource("5_lquwl")
+metadata/_edit_lock_ = true
+
+[node name="panel_right" type="Sprite2D" parent="game_objects/camera" unique_id=765196930]
+position = Vector2(140, 0)
+texture = ExtResource("5_lquwl")
+metadata/_edit_lock_ = true
+
+[node name="button_holder" type="Control" parent="game_objects/camera" unique_id=1210530074]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -120.0
+offset_bottom = 90.0
+
+[node name="buttons" parent="game_objects/camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 38.0
+offset_bottom = 26.0
+
+[node name="buttons2" parent="game_objects/camera/button_holder" unique_id=441015796 instance=ExtResource("6_7mycd")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 29.0
+offset_right = 38.0
+offset_bottom = 42.0
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=41941786]
 position = Vector2(0, 36)
@@ -346,101 +261,56 @@ position = Vector2(0.01, 4.01)
 scale = Vector2(1e-05, 1e-05)
 shape = SubResource("CircleShape2D_efxa6")
 
-[node name="directional_animation_component" parent="player" unique_id=532363149 instance=ExtResource("4_kek77")]
+[node name="directional_animation_component" parent="player" unique_id=532363149 node_paths=PackedStringArray("sprite") instance=ExtResource("4_kek77")]
+sprite = NodePath("../player_sprite")
+
+[node name="health_component" parent="player" unique_id=369237019 instance=ExtResource("5_efxa6")]
 
 [node name="shadow" parent="player" unique_id=598471710 instance=ExtResource("5_kek77")]
 
 [node name="player_sprite" type="AnimatedSprite2D" parent="player" unique_id=1784591774]
 sprite_frames = SubResource("SpriteFrames_lquwl")
-animation = &"watering_side"
+animation = &"walk_cycle_back"
+
+[node name="Area2D" parent="player" unique_id=1135473216 instance=ExtResource("11_dg77c")]
+position = Vector2(0, -14)
 
 [node name="player_collision" type="CollisionShape2D" parent="player" unique_id=1575404651]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="camera" type="Camera2D" parent="." unique_id=403919883]
-position = Vector2(0, 6)
-metadata/_edit_lock_ = true
-
-[node name="panel_left" type="Sprite2D" parent="camera" unique_id=625535643]
-position = Vector2(-140, 0)
-texture = ExtResource("5_lquwl")
-metadata/_edit_lock_ = true
-
-[node name="panel_right" type="Sprite2D" parent="camera" unique_id=765196930]
-position = Vector2(140, 0)
-texture = ExtResource("5_lquwl")
-metadata/_edit_lock_ = true
-
-[node name="button_holder" type="Control" parent="camera" unique_id=1210530074]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -160.0
-offset_top = -90.0
-offset_right = -120.0
-offset_bottom = 90.0
-
-[node name="buttons" parent="camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 13.0
-offset_right = 38.0
-offset_bottom = 26.0
-kPlantName = "carrot"
-
-[node name="buttons2" parent="camera/button_holder" unique_id=441015796 instance=ExtResource("6_7mycd")]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 29.0
-offset_right = 38.0
-offset_bottom = 42.0
-kPlantName = "torrac"
-
-[node name="enemy_bounty_hunter" type="CharacterBody2D" parent="." unique_id=1028105119]
+[node name="enemy_bounty_hunter" parent="." unique_id=411508806 instance=ExtResource("10_4c57u")]
 position = Vector2(-113, -72)
-script = ExtResource("10_efxa6")
-
-[node name="shadow" parent="enemy_bounty_hunter" unique_id=1165457193 instance=ExtResource("5_kek77")]
-
-[node name="directional_animation_component" parent="enemy_bounty_hunter" unique_id=483007831 instance=ExtResource("4_kek77")]
-
-[node name="enemy_bounty_hunter_sprite" type="AnimatedSprite2D" parent="enemy_bounty_hunter" unique_id=806274608]
-sprite_frames = SubResource("SpriteFrames_come4")
-animation = &"standing_front"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_bounty_hunter" unique_id=1959535679]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_h8e4i")
 
 [connection signal="area_entered" from="game_objects/farmland" to="game_objects/farmland" method="_on_area_entered"]
 [connection signal="area_exited" from="game_objects/farmland" to="game_objects/farmland" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35367" to="game_objects/@Area2D@35367" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35367" to="game_objects/@Area2D@35367" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35368" to="game_objects/@Area2D@35368" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35368" to="game_objects/@Area2D@35368" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35369" to="game_objects/@Area2D@35369" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35369" to="game_objects/@Area2D@35369" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35370" to="game_objects/@Area2D@35370" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35370" to="game_objects/@Area2D@35370" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35371" to="game_objects/@Area2D@35371" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35371" to="game_objects/@Area2D@35371" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35372" to="game_objects/@Area2D@35372" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35372" to="game_objects/@Area2D@35372" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35373" to="game_objects/@Area2D@35373" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35373" to="game_objects/@Area2D@35373" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35374" to="game_objects/@Area2D@35374" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35374" to="game_objects/@Area2D@35374" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35375" to="game_objects/@Area2D@35375" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35375" to="game_objects/@Area2D@35375" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35376" to="game_objects/@Area2D@35376" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35376" to="game_objects/@Area2D@35376" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35377" to="game_objects/@Area2D@35377" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35377" to="game_objects/@Area2D@35377" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35378" to="game_objects/@Area2D@35378" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35378" to="game_objects/@Area2D@35378" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35379" to="game_objects/@Area2D@35379" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35379" to="game_objects/@Area2D@35379" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35380" to="game_objects/@Area2D@35380" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35380" to="game_objects/@Area2D@35380" method="_on_area_exited"]
-[connection signal="area_entered" from="game_objects/@Area2D@35381" to="game_objects/@Area2D@35381" method="_on_area_entered"]
-[connection signal="area_exited" from="game_objects/@Area2D@35381" to="game_objects/@Area2D@35381" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189942" to="game_objects/@Area2D@189942" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189942" to="game_objects/@Area2D@189942" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189943" to="game_objects/@Area2D@189943" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189943" to="game_objects/@Area2D@189943" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189944" to="game_objects/@Area2D@189944" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189944" to="game_objects/@Area2D@189944" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189945" to="game_objects/@Area2D@189945" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189945" to="game_objects/@Area2D@189945" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189946" to="game_objects/@Area2D@189946" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189946" to="game_objects/@Area2D@189946" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189947" to="game_objects/@Area2D@189947" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189947" to="game_objects/@Area2D@189947" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189948" to="game_objects/@Area2D@189948" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189948" to="game_objects/@Area2D@189948" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189949" to="game_objects/@Area2D@189949" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189949" to="game_objects/@Area2D@189949" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189950" to="game_objects/@Area2D@189950" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189950" to="game_objects/@Area2D@189950" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189951" to="game_objects/@Area2D@189951" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189951" to="game_objects/@Area2D@189951" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189952" to="game_objects/@Area2D@189952" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189952" to="game_objects/@Area2D@189952" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189953" to="game_objects/@Area2D@189953" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189953" to="game_objects/@Area2D@189953" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189954" to="game_objects/@Area2D@189954" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189954" to="game_objects/@Area2D@189954" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189955" to="game_objects/@Area2D@189955" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189955" to="game_objects/@Area2D@189955" method="_on_area_exited"]
+[connection signal="area_entered" from="game_objects/@Area2D@189956" to="game_objects/@Area2D@189956" method="_on_area_entered"]
+[connection signal="area_exited" from="game_objects/@Area2D@189956" to="game_objects/@Area2D@189956" method="_on_area_exited"]

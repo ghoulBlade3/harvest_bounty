@@ -1,10 +1,10 @@
 extends Node
 class_name dir_anim_compoment
 
-var sprite: AnimatedSprite2D
+@export var sprite: AnimatedSprite2D
 var lastLookDir: String = "S"
 
-func dir_animation(sprite, moveDir):
+func dir_animation(moveDir):
 	if moveDir.x < 0:
 		lastLookDir = "S"
 		sprite.flip_h = true

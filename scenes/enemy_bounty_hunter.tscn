@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://cjbbyfmd86ruy"]
+
+[ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://scenes/shadow.tscn" id="2_6moac"]
+[ext_resource type="PackedScene" uid="uid://dhaeaee8xstur" path="res://components/enemy_ai_component.tscn" id="3_vivdj"]
+[ext_resource type="PackedScene" uid="uid://dtib4ad7wx478" path="res://components/directional_animation_component.tscn" id="4_b3fag"]
+[ext_resource type="Texture2D" uid="uid://b23lps3fygynn" path="res://textures/enemy/bounty-hunter.png" id="5_7bw08"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u8w0"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(0, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0odxb"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lswn8"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(0, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6jrf"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(16, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuqvo"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(32, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsp4k"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(48, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq58d"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(64, 24, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seu75"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htxhm"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq2sk"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k2k6"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rl1p"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(16, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok6jj"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(32, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_facbu"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(48, 48, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1qrp"]
+atlas = ExtResource("5_7bw08")
+region = Rect2(64, 48, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_come4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u8w0")
+}],
+"loop": true,
+"name": &"standing_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0odxb")
+}],
+"loop": true,
+"name": &"standing_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lswn8")
+}],
+"loop": true,
+"name": &"standing_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6jrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuqvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsp4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq58d")
+}],
+"loop": true,
+"name": &"walk_cycle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seu75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htxhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq2sk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k2k6")
+}],
+"loop": true,
+"name": &"walk_cycle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rl1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok6jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_facbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1qrp")
+}],
+"loop": true,
+"name": &"walk_cycle_side",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8e4i"]
+size = Vector2(6, 21)
+
+[node name="enemy_bounty_hunter" type="CharacterBody2D" unique_id=411508806]
+
+[node name="shadow" parent="." unique_id=598471710 instance=ExtResource("2_6moac")]
+
+[node name="enemy_ai_component" parent="." unique_id=1405403973 node_paths=PackedStringArray("dir_animation_player") instance=ExtResource("3_vivdj")]
+dir_animation_player = NodePath("../directional_animation_component")
+
+[node name="directional_animation_component" parent="." unique_id=532363149 node_paths=PackedStringArray("sprite") instance=ExtResource("4_b3fag")]
+sprite = NodePath("../enemy_bounty_hunter_sprite")
+
+[node name="enemy_bounty_hunter_sprite" type="AnimatedSprite2D" parent="." unique_id=30738945]
+sprite_frames = SubResource("SpriteFrames_come4")
+animation = &"standing_front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1926229623]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_h8e4i")

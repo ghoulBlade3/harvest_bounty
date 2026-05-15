@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ch4fyw3fq1a75"]
+
+[ext_resource type="Texture2D" uid="uid://csceohidwrruq" path="res://textures/player/attack.png" id="1_2tl33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tl33"]
+atlas = ExtResource("1_2tl33")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqjam"]
+atlas = ExtResource("1_2tl33")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb4ip"]
+atlas = ExtResource("1_2tl33")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qywsn"]
+atlas = ExtResource("1_2tl33")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yt0id"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tl33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqjam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb4ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qywsn")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=1135473216]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=463895561]
+sprite_frames = SubResource("SpriteFrames_yt0id")
+animation = &"attack"
+frame = 3
+frame_progress = 0.6791873
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2098447188]
+polygon = PackedVector2Array(-6, 8, -9, 3, -10, -4, 0, -10, 10, -4, 9, 3, 6, 8)
