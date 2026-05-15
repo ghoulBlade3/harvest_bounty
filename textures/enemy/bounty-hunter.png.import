@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://txj5lvywg1pn"
-path="res://.godot/imported/temp-enemy.png-750dc18b3f2f58ed17c7159519db7324.ctex"
+uid="uid://b23lps3fygynn"
+path="res://.godot/imported/bounty-hunter.png-85705e1e15f01d843839629cd3d84d61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/enemy/temp-enemy.png"
-dest_files=["res://.godot/imported/temp-enemy.png-750dc18b3f2f58ed17c7159519db7324.ctex"]
+source_file="res://textures/enemy/bounty-hunter.png"
+dest_files=["res://.godot/imported/bounty-hunter.png-85705e1e15f01d843839629cd3d84d61.ctex"]
 
 [params]
 
