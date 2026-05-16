@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bm1rgpm5nc1vt"]
+
+[ext_resource type="Script" uid="uid://doaqi6uj1jakc" path="res://scripts/attack_component.gd" id="1_5e5ew"]
+
+[node name="attack_component" type="Node" unique_id=200530912]
+script = ExtResource("1_5e5ew")
+attack_damage = 10.0
+knockback_amnt = 1400.0

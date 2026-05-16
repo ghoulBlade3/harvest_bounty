@@ -231,21 +231,25 @@ tile_set = SubResource("TileSet_lquwl")
 [node name="farmland_connector" type="Node2D" parent="game_objects" unique_id=1418668154]
 position = Vector2(0, -180)
 
-[node name="camera" type="Camera2D" parent="game_objects" unique_id=403919883]
+[node name="enemy_bounty_hunter" parent="." unique_id=411508806 instance=ExtResource("10_4c57u")]
+position = Vector2(-99, -47)
+motion_mode = 1
+
+[node name="camera" type="Camera2D" parent="." unique_id=403919883]
 position = Vector2(0, 6)
 metadata/_edit_lock_ = true
 
-[node name="panel_left" type="Sprite2D" parent="game_objects/camera" unique_id=625535643]
+[node name="panel_left" type="Sprite2D" parent="camera" unique_id=625535643]
 position = Vector2(-140, 0)
 texture = ExtResource("5_lquwl")
 metadata/_edit_lock_ = true
 
-[node name="panel_right" type="Sprite2D" parent="game_objects/camera" unique_id=765196930]
+[node name="panel_right" type="Sprite2D" parent="camera" unique_id=765196930]
 position = Vector2(140, 0)
 texture = ExtResource("5_lquwl")
 metadata/_edit_lock_ = true
 
-[node name="button_holder" type="Control" parent="game_objects/camera" unique_id=1210530074]
+[node name="button_holder" type="Control" parent="camera" unique_id=1210530074]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -160.0
@@ -253,7 +257,7 @@ offset_top = -90.0
 offset_right = -120.0
 offset_bottom = 90.0
 
-[node name="buttons" parent="game_objects/camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
+[node name="buttons" parent="camera/button_holder" unique_id=59998802 instance=ExtResource("6_7mycd")]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 13.0
@@ -261,7 +265,7 @@ offset_right = 38.0
 offset_bottom = 26.0
 kPlantName = "carrot"
 
-[node name="buttons2" parent="game_objects/camera/button_holder" unique_id=441015796 instance=ExtResource("6_7mycd")]
+[node name="buttons2" parent="camera/button_holder" unique_id=441015796 instance=ExtResource("6_7mycd")]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 29.0
@@ -302,10 +306,6 @@ script = ExtResource("6_dg77c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/player_hurtbox" unique_id=1120285394]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_ycdy4")
-
-[node name="enemy_bounty_hunter" parent="." unique_id=411508806 instance=ExtResource("10_4c57u")]
-position = Vector2(-99, -47)
-motion_mode = 1
 
 [connection signal="area_entered" from="game_objects/farmland" to="game_objects/farmland" method="_on_area_entered"]
 [connection signal="area_exited" from="game_objects/farmland" to="game_objects/farmland" method="_on_area_exited"]
