@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxv1enxnwqxu8"
-path="res://.godot/imported/torrac_stage_2.png-951f8f81bcc140f6f825a4268d675809.ctex"
+uid="uid://c40m6rgp0hjaq"
+path="res://.godot/imported/pumpkin_stage_2.png-0995849cbae52ac7a46c03c023ebe8a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/blocks/torrac_stage_2.png"
-dest_files=["res://.godot/imported/torrac_stage_2.png-951f8f81bcc140f6f825a4268d675809.ctex"]
+source_file="res://textures/blocks/pumpkin_stage_2.png"
+dest_files=["res://.godot/imported/pumpkin_stage_2.png-0995849cbae52ac7a46c03c023ebe8a0.ctex"]
 
 [params]
 

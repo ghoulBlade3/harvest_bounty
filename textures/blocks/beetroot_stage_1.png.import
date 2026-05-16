@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbvtxl60flxm4"
-path="res://.godot/imported/torrac_stage_0.png-d9bf1bdd66d69fc6485db8da46a6352a.ctex"
+uid="uid://b8fpq4y2ewwm0"
+path="res://.godot/imported/beetroot_stage_1.png-47f55c3541e1202b96c39dc1cb4fcf77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/blocks/torrac_stage_0.png"
-dest_files=["res://.godot/imported/torrac_stage_0.png-d9bf1bdd66d69fc6485db8da46a6352a.ctex"]
+source_file="res://textures/blocks/beetroot_stage_1.png"
+dest_files=["res://.godot/imported/beetroot_stage_1.png-47f55c3541e1202b96c39dc1cb4fcf77.ctex"]
 
 [params]
 

@@ -11,17 +11,19 @@ var hasBoughtSomethingForTheFirstTime: bool = false
 const kSpeed: float = 4800.0
 var speed: float = kSpeed
 #var health: = 64
-var money: int = 80
+var money: int = 10000
 var canInteract: bool = true
 
 var selectedItem: int = -1
 var items = {
 	"empty": 0,
-	"carrot": 1,
-	"torrac": 2
+	"potato": 1,
+	"beetroot": 2,
+	"pumpkin": 3,
+	"carrot": 4
 }
 
-var inventory: Array = [null, 0, 0]
+var inventory: Array = [null, 0, 0, 0, 0]
 var lastLookDir: Vector2 = Vector2.DOWN
 var last_velocity_normalized = Vector2.ZERO
 var instant

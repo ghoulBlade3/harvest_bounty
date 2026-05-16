@@ -13,8 +13,10 @@ extends Control
 
 var plantID = null
 var costs = {
-	"carrot": 5,
-	"torrac": 2
+	"potato": 10,
+	"beetroot": 12,
+	"pumpkin": 16,
+	"carrot": 32
 }
 
 
