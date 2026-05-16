@@ -1,2 +1,2 @@
 extends CharacterBody2D
-var stunned: bool = false
+var stunned = false

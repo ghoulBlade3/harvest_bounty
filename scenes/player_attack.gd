@@ -12,9 +12,9 @@ func _on_attack_animation_animation_finished() -> void:
 	queue_free()
 
 
-func _on_area_entered(area: enemy_hurtbox) -> void:
-	print("test")
-	var enemy = area.get_parent()
-	var health: health_component = enemy.get_node("health_component")
-	
-	health.damage(attack_damage, knockback_amnt, knockback_dir)
+func _on_area_entered(area: Area2D):
+	if area is enemy_hurtbox:
+		var enemy = area.get_parent()
+		var health: health_component = enemy.get_node("health_component")
+		health.damage(attack_damage, knockback_amnt, knockback_dir)
+		hitbox.queue_free()

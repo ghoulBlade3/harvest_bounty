@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://bj63vcd61rta6"]
 
-[ext_resource type="Script" uid="uid://d2yxrq1nr0qtv" path="res://scenes/enemy_bounty_hunter.gd" id="1_b3fag"]
+[ext_resource type="Script" uid="uid://d2yxrq1nr0qtv" path="res://scenes/enemy_bounty_hunter.gd" id="1_7bw08"]
 [ext_resource type="PackedScene" uid="uid://b4orwemvnl22n" path="res://scenes/shadow.tscn" id="2_6moac"]
 [ext_resource type="PackedScene" uid="uid://dhaeaee8xstur" path="res://components/enemy_ai_component.tscn" id="3_vivdj"]
-[ext_resource type="PackedScene" path="res://components/health_component.tscn" id="4_6moac"]
+[ext_resource type="PackedScene" uid="uid://bgtuflughs7qw" path="res://components/health_component.tscn" id="4_6moac"]
 [ext_resource type="PackedScene" uid="uid://dtib4ad7wx478" path="res://components/directional_animation_component.tscn" id="4_b3fag"]
 [ext_resource type="Texture2D" uid="uid://b23lps3fygynn" path="res://textures/enemy/bounty-hunter.png" id="5_7bw08"]
+[ext_resource type="Script" uid="uid://doaqi6uj1jakc" path="res://scripts/attack_component.gd" id="5_b3fag"]
 [ext_resource type="PackedScene" uid="uid://2w7l82md8pj2" path="res://components/hurtbox.tscn" id="6_vivdj"]
 [ext_resource type="Script" uid="uid://52sw3x6ci5pu" path="res://components/hurtbox.gd" id="7_b3fag"]
 
@@ -151,10 +152,12 @@ animations = [{
 size = Vector2(8, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vivdj"]
-size = Vector2(14, 21)
+size = Vector2(8, 19)
 
 [node name="enemy_bounty_hunter" type="CharacterBody2D" unique_id=411508806]
-script = ExtResource("1_b3fag")
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_7bw08")
 
 [node name="shadow" parent="." unique_id=598471710 instance=ExtResource("2_6moac")]
 
@@ -166,6 +169,11 @@ sprite = NodePath("../enemy_bounty_hunter_sprite")
 
 [node name="health_component" parent="." unique_id=369237019 instance=ExtResource("4_6moac")]
 
+[node name="attack_component" type="Node" parent="." unique_id=2089725836]
+script = ExtResource("5_b3fag")
+attack_damage = 10.0
+knockback_amnt = 1400.0
+
 [node name="enemy_bounty_hunter_sprite" type="AnimatedSprite2D" parent="." unique_id=30738945]
 sprite_frames = SubResource("SpriteFrames_come4")
 animation = &"standing_front"
@@ -175,6 +183,7 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_34a5w")
 
 [node name="hurtbox" parent="." unique_id=1134379180 instance=ExtResource("6_vivdj")]
+collision_layer = 2
 script = ExtResource("7_b3fag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=456244977]
