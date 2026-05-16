@@ -23,6 +23,7 @@ var oldPlayerAnimation: StringName
 var oldPlayerSpeed: float
 
 
+
 func _ready() -> void:
 	grow_time.wait_time = kGrowTime
 
@@ -55,7 +56,8 @@ func farmland_action() -> void:
 				farmland_plant.texture = load("res://textures/blocks/" + crop + "_stage_0.png")
 				player.inventory[player.selectedItem] -= 1
 				for button in button_holder.get_children():
-					button.update_text()
+					if button.has_method("update_text"):
+						button.update_text()
 					
 				# UNSELECT THE ITEM IF THE PLAYER RAN OUT
 				if (player.inventory[player.selectedItem] <= 0):

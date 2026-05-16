@@ -6,6 +6,7 @@ class_name player1
 const kSpeed: float = 4800.0
 var speed: float = kSpeed
 var health: int = 5
+var money: int = 80
 var canInteract: bool = true
 
 var selectedItem: int = -1
