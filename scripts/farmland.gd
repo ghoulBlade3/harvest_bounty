@@ -60,12 +60,18 @@ func farmland_action() -> void:
 				# UNSELECT THE ITEM IF THE PLAYER RAN OUT
 				if (player.inventory[player.selectedItem] <= 0):
 					player.selectedItem = player.items["empty"]
-				
 				isPlantedOn = true
 	
-	# PLANTS ARE COLLECTED
-	if growthStage == 2:
-		print("THIS IS COLLECTED NOW")
+	# PLANTS ARE CONSUMED IF PLANT IS FULLY GROWN
+	if growthStage != 2:
+		return
+	player.consume_food(crop)
+	
+	# RESET PLANT SO IT CAN BE PLANTED ON AGAIN
+	isPlantedOn = false 
+	growthStage = 0
+	farmland_plant.texture = null
+	crop = null
 	return
 
 
@@ -84,23 +90,21 @@ func _process(_delta: float) -> void:
 			isGrowing = true
 		elif grow_time.time_left == 0:
 			add_growth_stage()
-			
-	
-	# IF PLAYER ISNT IN REACH OF FARMLAND, STOP CODE HERE
-	if !isInReach:
-		farmland_selection_overlay.hide()
-		return
-	farmland_selection_overlay.show()
-	
-	
+
 	# IF PLAYER IS DONE WATERING THE FARMLAND, RETURN THEIR SPEED/ANIM BACK TO NORMAL
 	if isWet:
 		if not player_sprite.is_playing() && player.canInteract == false:
 			player.speed = oldPlayerSpeed
 			player.canInteract = true
 			player_sprite.play(oldPlayerAnimation)
-
-	 # DO FARMLAND ACTIONS
+	
+	 # STOP CODE HERE IF PLAYER CANT REACH FARMLAND
+	if !isInReach:
+		farmland_selection_overlay.hide()
+		return
+	farmland_selection_overlay.show()
+	
+	# PLAYER INTERACTS WITH FARMLAND
 	if Input.is_action_just_pressed("interact") && player.canInteract:
 		farmland_action()
 	if Input.is_action_just_pressed("water") && player.canInteract && not isWet:

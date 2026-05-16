@@ -3,7 +3,8 @@ class_name player1
 @onready var player_sprite: AnimatedSprite2D = $player_sprite
 @onready var directional_animation_component: dir_anim_compoment = $directional_animation_component
 
-var speed: float = 4800.0
+const kSpeed: float = 4800.0
+var speed: float = kSpeed
 var health: int = 5
 var canInteract: bool = true
 
@@ -13,6 +14,7 @@ var items = {
 	"carrot": 1,
 	"torrac": 2
 }
+
 var inventory: Array = [null, 0, 0]
 var lastLookDir: String = 'S'
 var last_velocity_normalized = Vector2.ZERO
@@ -40,9 +42,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _consume_food(foodItem: String):
+
+
+var kFastSpeed = speed * 1.5
+var carrotTimer: Timer = Timer.new()
+
+func consume_food(foodItem: String):
 	match foodItem:
 		"carrot":
+			speed = kFastSpeed
 			print("Carrot consume")
+			return
 		"torrac":
 			print("Torrac consume")
+			return
