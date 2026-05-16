@@ -3,6 +3,8 @@ class_name player1
 @onready var player_sprite: AnimatedSprite2D = $player_sprite
 @onready var directional_animation_component: dir_anim_compoment = $directional_animation_component
 
+var hasBoughtSomethingForTheFirstTime: bool = false
+
 const kSpeed: float = 4800.0
 var speed: float = kSpeed
 var health: int = 5

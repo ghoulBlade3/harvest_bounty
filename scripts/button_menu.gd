@@ -9,6 +9,7 @@ extends Control
 @export var kPlantName: String = ""
 @onready var button_holder: Control = $".."
 @onready var stats_holder: Node2D = $"../../stats_holder"
+@onready var selected: RichTextLabel = $selected
 
 var plantID = null
 var costs = {
@@ -36,9 +37,19 @@ func buy_function():
 	
 	player.money -= costs[kPlantName]
 	player.inventory[plantID] += 1
+	
+	# MAKE PLAYER SELECT ITEM IF THEY HAVENT BOUGHT SOMETHING EVER
+	if not player.hasBoughtSomethingForTheFirstTime:
+		select_function()
+		player.hasBoughtSomethingForTheFirstTime = true
 	update_text()
 
 # THING GETS SELECTED
 func select_function():
 	if player.inventory[plantID] > 0:
+		
+		for button in button_holder.get_children():
+			button.selected.hide()
+		
 		player.selectedItem = plantID
+		selected.show()

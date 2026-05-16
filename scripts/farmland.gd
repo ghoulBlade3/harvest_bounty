@@ -62,6 +62,9 @@ func farmland_action() -> void:
 				# UNSELECT THE ITEM IF THE PLAYER RAN OUT
 				if (player.inventory[player.selectedItem] <= 0):
 					player.selectedItem = player.items["empty"]
+					
+					for button in button_holder.get_children():
+						button.selected.hide()
 				isPlantedOn = true
 	
 	# PLANTS ARE CONSUMED IF PLANT IS FULLY GROWN
