@@ -1,8 +1,9 @@
 extends Node
 class_name health_component
+@onready var stats_holder: Node2D = $"../../camera/stats_holder"
 
-@export var kMaxHealth: float = 100.0
-var health: float
+@export var kMaxHealth: int = 100
+var health: int
 var parent
 var children
 var sprite
@@ -18,6 +19,9 @@ func _ready():
 
 func damage(attack_damage, knockback_amnt, knockback_dir):
 	health -= attack_damage
+	
+	stats_holder.update_stat("health")
+	
 	sprite.self_modulate = Color("ff0000ff")
 	get_tree().create_timer(0.2).timeout.connect(func(): sprite.self_modulate = Color("ffffffff"))
 	knockback_dir = knockback_dir.normalized() * knockback_amnt

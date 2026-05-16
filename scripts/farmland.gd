@@ -3,7 +3,7 @@ extends Area2D
 @onready var farmland_plant: Sprite2D = $farmland_plant
 @onready var player: CharacterBody2D = $"../../player"
 @onready var farmland_selection_overlay: Sprite2D = $farmland_selection_overlay
-@onready var button_holder: Control = $"../camera/button_holder"
+@onready var button_holder: Control = $"../../camera/button_holder"
 @onready var grow_time: Timer = $grow_time
 @onready var player_area: Area2D = $"../../player/player_area"
 @onready var player_sprite: AnimatedSprite2D = $"../../player/player_sprite"
@@ -23,6 +23,7 @@ var oldPlayerAnimation: StringName
 var oldPlayerSpeed: float
 
 
+
 func _ready() -> void:
 	grow_time.wait_time = kGrowTime
 
@@ -35,9 +36,10 @@ func farmland_water() -> void:
 	oldPlayerSpeed = player.speed
 	
 	# MAKE PLAYER UNABLE TO MOVE/ANIMATE && DISABLE THEIR INTERACTIONS
+	player.canInteract = false
 	player.speed = 0.0
 	player_sprite.play("watering_side")
-	player.canInteract = false
+
 	isWet = true
 	farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
 	return
@@ -54,17 +56,27 @@ func farmland_action() -> void:
 				farmland_plant.texture = load("res://textures/blocks/" + crop + "_stage_0.png")
 				player.inventory[player.selectedItem] -= 1
 				for button in button_holder.get_children():
-					button.update_text()
+					if button.has_method("update_text"):
+						button.update_text()
 					
 				# UNSELECT THE ITEM IF THE PLAYER RAN OUT
 				if (player.inventory[player.selectedItem] <= 0):
 					player.selectedItem = player.items["empty"]
-				
+					
+					for button in button_holder.get_children():
+						button.selected.hide()
 				isPlantedOn = true
 	
-	# PLANTS ARE COLLECTED
-	if growthStage == 2:
-		print("THIS IS COLLECTED NOW")
+	# PLANTS ARE CONSUMED IF PLANT IS FULLY GROWN
+	if growthStage != 2:
+		return
+	player.consume_food(crop)
+	
+	# RESET PLANT SO IT CAN BE PLANTED ON AGAIN
+	isPlantedOn = false 
+	growthStage = 0
+	farmland_plant.texture = null
+	crop = null
 	return
 
 
@@ -83,32 +95,36 @@ func _process(_delta: float) -> void:
 			isGrowing = true
 		elif grow_time.time_left == 0:
 			add_growth_stage()
-	
+
 	# IF PLAYER IS DONE WATERING THE FARMLAND, RETURN THEIR SPEED/ANIM BACK TO NORMAL
 	if isWet:
 		if not player_sprite.is_playing() && player.canInteract == false:
 			player.speed = oldPlayerSpeed
 			player.canInteract = true
 			player_sprite.play(oldPlayerAnimation)
-
-	 # DO FARMLAND ACTION IF PLAYER CAN REACH IT
-	if isInReach:
-		farmland_selection_overlay.show()
-		if Input.is_action_just_pressed("interact") && player.canInteract:
-			farmland_action()
-		if Input.is_action_just_pressed("water") && player.canInteract && not isWet:
-			farmland_water()
-	else:
+	
+	 # STOP CODE HERE IF PLAYER CANT REACH FARMLAND
+	if !isInReach:
 		farmland_selection_overlay.hide()
+		return
+	farmland_selection_overlay.show()
+	
+	# PLAYER INTERACTS WITH FARMLAND
+	if Input.is_action_just_pressed("interact") && player.canInteract:
+		farmland_action()
+	if Input.is_action_just_pressed("water") && player.canInteract && not isWet:
+		farmland_water()
 	return
 
 
 func _on_area_entered(area: Area2D) -> void:
+	# DETECT PLAYER ENTERING
 	if area == player_area:
 		isInReach = true
 	return
 
 func _on_area_exited(area: Area2D) -> void:
+	# DETECT PLAYER LEAVING
 	if area == player_area:
 		isInReach = false
 	return
