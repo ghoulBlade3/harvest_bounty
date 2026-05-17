@@ -40,10 +40,8 @@ func buy_function():
 	player.money -= costs[kPlantName]
 	player.inventory[plantID] += 1
 	
-	# MAKE PLAYER SELECT ITEM IF THEY HAVENT BOUGHT SOMETHING EVER
-	if not player.hasBoughtSomethingForTheFirstTime:
-		select_function()
-		player.hasBoughtSomethingForTheFirstTime = true
+
+	select_function()
 	update_text()
 
 # THING GETS SELECTED

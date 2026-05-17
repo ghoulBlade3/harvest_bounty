@@ -9,7 +9,6 @@ class_name player
 
 
 const kAttack = preload("res://scenes/player_attack.tscn")
-var hasBoughtSomethingForTheFirstTime: bool = false
 
 const kSpeed: float = 4800.0
 var speed: float = kSpeed
