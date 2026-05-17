@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 
 
 
-var kFastSpeed = speed * 10.0
+var kFastSpeed = speed * 1.5
 var carrotTimer: Timer = Timer.new()
 
 func consume_food(foodItem: String):
