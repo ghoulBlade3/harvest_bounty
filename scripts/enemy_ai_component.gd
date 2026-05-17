@@ -1,7 +1,7 @@
 extends Node
 class_name enemy_ai_component
 
-@onready var target: CharacterBody2D = $"../../player"
+@onready var target: player = $"/root/main/player"
 @onready var parent = get_parent()
 
 @export var dir_animation_player: dir_anim_compoment

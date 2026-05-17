@@ -128,7 +128,7 @@ kSpeed = 3200.0
 sprite = NodePath("../enemy_bounty_hunter_sprite")
 
 [node name="health_component" parent="." unique_id=369237019 instance=ExtResource("5_nu5c3")]
-kMaxHealth = 50
+kMaxHealth = 25
 
 [node name="attack_component" parent="." unique_id=200530912 instance=ExtResource("6_85sb7")]
 

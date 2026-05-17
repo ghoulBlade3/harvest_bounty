@@ -168,6 +168,7 @@ dir_animation_player = NodePath("../directional_animation_component")
 sprite = NodePath("../enemy_bounty_hunter_sprite")
 
 [node name="health_component" parent="." unique_id=369237019 instance=ExtResource("4_6moac")]
+kMaxHealth = 50
 
 [node name="attack_component" parent="." unique_id=200530912 instance=ExtResource("6_7bw08")]
 

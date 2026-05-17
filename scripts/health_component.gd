@@ -1,6 +1,6 @@
 extends Node
 class_name health_component
-@onready var stats_holder: Node2D = $"../../camera/stats_holder"
+@onready var stats_holder: Node2D = $"/root/main/camera/stats_holder"
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var kMaxHealth: int = 100
@@ -14,7 +14,6 @@ func _ready():
 	children = parent.get_children()
 	for child in children:
 		if child is AnimatedSprite2D:
-			print("yes")
 			sprite = child
 	health = kMaxHealth
 
