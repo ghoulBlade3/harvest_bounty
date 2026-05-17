@@ -122,11 +122,13 @@ shadow_size = 4
 
 [node name="enemy_ai_component" parent="." unique_id=1405403973 node_paths=PackedStringArray("dir_animation_player") instance=ExtResource("3_l1hcj")]
 dir_animation_player = NodePath("../directional_animation_component")
+kSpeed = 3200.0
 
 [node name="directional_animation_component" parent="." unique_id=532363149 node_paths=PackedStringArray("sprite") instance=ExtResource("4_8rts1")]
 sprite = NodePath("../enemy_bounty_hunter_sprite")
 
 [node name="health_component" parent="." unique_id=369237019 instance=ExtResource("5_nu5c3")]
+kMaxHealth = 50
 
 [node name="attack_component" parent="." unique_id=200530912 instance=ExtResource("6_85sb7")]
 
