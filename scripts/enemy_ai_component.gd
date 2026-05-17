@@ -13,7 +13,9 @@ func _physics_process(delta) -> void:
 		get_tree().create_timer(0.3).timeout.connect(func(): parent.stunned = false)
 	else:
 		var direction = parent.global_position.direction_to(target.global_position)
-		
+		if target.scare_effect:
+			direction = -direction
+			
 		parent.velocity = direction * kSpeed * delta
 		dir_animation_player.dir_animation(direction.round())
 		parent.move_and_slide()

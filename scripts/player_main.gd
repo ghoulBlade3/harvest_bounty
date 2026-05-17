@@ -14,6 +14,7 @@ var speed: float = kSpeed
 var kills: int = 0
 var money: int = 10000
 var canInteract: bool = true
+var scare_effect: bool = false
 
 var selectedItem: int = -1
 var items = {
@@ -99,4 +100,11 @@ func consume_food(foodItem: String):
 				if effect.effectType == "speed":
 					effect.timer_start(10)
 			print("Carrot consume")
+			return
+		"pumpkin":
+			scare_effect = true
+			
+			for effect in effect_holder.get_children():
+				if effect.effectType == "scare":
+					effect.timer_start(10)
 			return
