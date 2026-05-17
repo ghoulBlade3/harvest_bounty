@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name effect_component
 @onready var effect: Sprite2D = $"."
 @export var effectType: String
 @onready var effect_timer: Timer = $effect_timer
@@ -32,5 +33,8 @@ func _physics_process(delta: float) -> void:
 		"scare":
 			if player.scare_effect:
 				player.scare_effect = false
+		"attack_speed":
+			if player.attack_cooldown == 0.1:
+				player.attack_cooldown = 0.5
 	print(effect_timer.time_left)
 	return

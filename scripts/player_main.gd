@@ -99,7 +99,6 @@ func consume_food(foodItem: String):
 			for effect in effect_holder.get_children():
 				if effect.effectType == "speed":
 					effect.timer_start(10)
-			print("Carrot consume")
 			return
 		"pumpkin":
 			scare_effect = true
@@ -108,3 +107,12 @@ func consume_food(foodItem: String):
 				if effect.effectType == "scare":
 					effect.timer_start(10)
 			return
+		"carrot":
+			attack_cooldown = 0.1
+			
+			for effect in effect_holder.get_children():
+				if effect.effectType == "attack_speed":
+					effect.timer_start(10)
+			return
+			
+			
