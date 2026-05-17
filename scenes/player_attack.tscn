@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://csceohidwrruq" path="res://textures/player/attack.png" id="1_2tl33"]
 [ext_resource type="Script" uid="uid://dyc3336yv01sg" path="res://scenes/player_attack.gd" id="1_pqjam"]
+[ext_resource type="AudioStream" uid="uid://dssur5wvpil01" path="res://textures/player/slash.wav" id="3_hb4ip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tl33"]
 atlas = ExtResource("1_2tl33")
@@ -54,6 +55,9 @@ frame_progress = 0.6791873
 
 [node name="attack_collision" type="CollisionPolygon2D" parent="." unique_id=2098447188]
 polygon = PackedVector2Array(-6, 8, -9, 3, -10, -4, 0, -10, 10, -4, 9, 3, 6, 8)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1357627577]
+stream = ExtResource("3_hb4ip")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="attack_animation" to="." method="_on_attack_animation_animation_finished"]

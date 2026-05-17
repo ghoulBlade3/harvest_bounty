@@ -1,6 +1,7 @@
 extends Node
 class_name health_component
 @onready var stats_holder: Node2D = $"../../camera/stats_holder"
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var kMaxHealth: int = 100
 var health: int
@@ -19,6 +20,7 @@ func _ready():
 
 func damage(attack_damage, knockback_amnt, knockback_dir):
 	health -= attack_damage
+	audio_stream_player.play()
 	
 	stats_holder.update_stat("health")
 	
@@ -31,6 +33,7 @@ func damage(attack_damage, knockback_amnt, knockback_dir):
 	parent.stunned = true
 	
 	if health <= 0:
+		
 		if parent is player:
 			get_tree().reload_current_scene()
 		parent.queue_free()
