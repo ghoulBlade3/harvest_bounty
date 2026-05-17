@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ccmjk5ferk33u"]
+
+[ext_resource type="Texture2D" uid="uid://bjafpjcq12yqy" path="res://textures/ui/health.png" id="1_5m5dw"]
+[ext_resource type="Script" uid="uid://dislujviw28x" path="res://scripts/effect.gd" id="2_0kunr"]
+[ext_resource type="FontFile" uid="uid://btuwvdh4n3pm6" path="res://textures/fonts/PixelSerif_16px_v02.ttf" id="2_fmlo3"]
+
+[node name="effect" type="Sprite2D" unique_id=999895642]
+texture = ExtResource("1_5m5dw")
+script = ExtResource("2_0kunr")
+
+[node name="effect_text" type="RichTextLabel" parent="." unique_id=485190235]
+texture_filter = 1
+offset_left = -9.0
+offset_top = -5.0
+offset_right = 28.0
+offset_bottom = 14.0
+mouse_filter = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("2_fmlo3")
+theme_override_font_sizes/normal_font_size = 9
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="effect_timer" type="Timer" parent="." unique_id=1163316194]
+one_shot = true

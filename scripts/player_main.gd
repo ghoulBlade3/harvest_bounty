@@ -3,6 +3,7 @@ class_name player
 @onready var player_sprite: AnimatedSprite2D = $player_sprite
 @onready var directional_animation_component: dir_anim_compoment = $directional_animation_component
 @onready var health_component: health_component = $health_component
+@onready var effect_holder: Node2D = $"../camera/effect_holder"
 
 
 const kAttack = preload("res://scenes/player_attack.tscn")
@@ -82,15 +83,23 @@ func _physics_process(delta: float) -> void:
 
 
 
-var kFastSpeed = speed * 1.5
+var kFastSpeed = speed * 10.0
 var carrotTimer: Timer = Timer.new()
 
 func consume_food(foodItem: String):
 	match foodItem:
-		"carrot":
+		
+		"potato":
 			speed = kFastSpeed
+			get_tree().create_timer(10).timeout.connect(func(): stunned = false)
+			
 			print("Carrot consume")
 			return
-		"torrac":
-			print("Torrac consume")
+		"beetroot":
+			speed = kFastSpeed
+			
+			for effect in effect_holder.get_children():
+				if effect.effectType == "speed":
+					effect.timer_start(10)
+			print("Carrot consume")
 			return
