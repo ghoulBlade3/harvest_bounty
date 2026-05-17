@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dov5j10plgstb"]
+
+[ext_resource type="AudioStream" uid="uid://b72xxy322uyry" path="res://textures/audio/bg_music.mp3" id="1_l3d1b"]
+[ext_resource type="Script" uid="uid://ce0lkfheu7eqv" path="res://background_music.gd" id="2_kqdjy"]
+
+[node name="background_music" type="AudioStreamPlayer" unique_id=1116521531]
+stream = ExtResource("1_l3d1b")
+volume_db = -9.67
+script = ExtResource("2_kqdjy")
