@@ -2,6 +2,7 @@ extends Node
 class_name health_component
 @onready var stats_holder: Node2D = $"/root/main/camera/stats_holder"
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var player: player = $"/root/main/player"
 
 @export var kMaxHealth: int = 100
 var health: int
@@ -36,8 +37,13 @@ func damage(attack_damage, knockback_amnt, knockback_dir):
 		if parent is player:
 			get_tree().reload_current_scene()
 		parent.queue_free()
+		player.money += 5
+		player.kills += 1
+		stats_holder.update_stat("money")
+		stats_holder.update_stat("kills")
 
 func heal(heal_amnt):
 	health += heal_amnt
 	stats_holder.update_stat("health")
 	sprite.self_modulate = Color("00ca31ff")
+	get_tree().create_timer(0.2).timeout.connect(func(): sprite.self_modulate = Color("ffffffff"))

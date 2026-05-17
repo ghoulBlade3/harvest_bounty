@@ -11,7 +11,7 @@ var hasBoughtSomethingForTheFirstTime: bool = false
 
 const kSpeed: float = 4800.0
 var speed: float = kSpeed
-#var health: = 64
+var kills: int = 0
 var money: int = 10000
 var canInteract: bool = true
 
@@ -90,10 +90,7 @@ func consume_food(foodItem: String):
 	match foodItem:
 		
 		"potato":
-			speed = kFastSpeed
-			get_tree().create_timer(10).timeout.connect(func(): stunned = false)
-			
-			print("Carrot consume")
+			health_component.heal(10)
 			return
 		"beetroot":
 			speed = kFastSpeed

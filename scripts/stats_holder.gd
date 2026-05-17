@@ -7,6 +7,7 @@ func _ready() -> void:
 	# SET ALL STATS AT THE START OF THE GAME
 	update_stat("health")
 	update_stat("money")
+	update_stat("kills")
 
 
 func update_stat(stat: String) -> void:
@@ -22,4 +23,6 @@ func update_stat(stat: String) -> void:
 				"money":
 					statBar.get_child(0).text = str(player.money)
 					return
+				"kills":
+					statBar.get_child(0).text = str(player.kills)
 	return
