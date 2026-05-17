@@ -73,6 +73,9 @@ func farmland_action() -> void:
 	player.consume_food(crop)
 	
 	# RESET PLANT SO IT CAN BE PLANTED ON AGAIN
+	isWet = false
+	farmland_sprite.texture = load("res://textures/blocks/farmland_dry.png")
+	
 	isPlantedOn = false 
 	growthStage = 0
 	farmland_plant.texture = null
