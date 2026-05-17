@@ -29,5 +29,8 @@ func _physics_process(delta: float) -> void:
 		"speed":
 			if player.speed == player.kFastSpeed:
 				player.speed = player.kSpeed
+		"scare":
+			if player.scare_effect:
+				player.scare_effect = false
 	print(effect_timer.time_left)
 	return
