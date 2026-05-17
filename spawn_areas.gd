@@ -1,6 +1,6 @@
 extends Node2D
 var spawn: bool = true
-var spawn_amnt: int = 1
+var spawn_amnt: float = 1
 var rng = RandomNumberGenerator.new()
 const ENEMY_BOUNTY_HUNTER = preload("uid://bj63vcd61rta6")
 const ENEMY_BEE = preload("uid://btentsv82auxc")
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	for _x in spawn_amnt:
+	for _x in ceili(spawn_amnt):
 		var position: Vector2
 		var rand_enemy_type: int
 		var child = children[rng.randi_range(0,3)]
@@ -37,3 +37,4 @@ func _on_timer_timeout() -> void:
 			spawn_bee(position)
 		else:
 			spawn_bounty_hunter(position)
+	spawn_amnt += 0.1
