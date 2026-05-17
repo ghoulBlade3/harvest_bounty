@@ -36,4 +36,8 @@ func damage(attack_damage, knockback_amnt, knockback_dir):
 		if parent is player:
 			get_tree().reload_current_scene()
 		parent.queue_free()
-		
+
+func heal(heal_amnt):
+	health += heal_amnt
+	stats_holder.update_stat("health")
+	sprite.self_modulate = Color("00ca31ff")
