@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cj3agjusjgfn1" path="res://scripts/button_menu.gd" id="1_5sm3h"]
 [ext_resource type="FontFile" uid="uid://btuwvdh4n3pm6" path="res://textures/fonts/PixelSerif_16px_v02.ttf" id="2_q21lg"]
 [ext_resource type="Texture2D" uid="uid://0wb37wad4gjq" path="res://textures/ui/icon_carrot.png" id="3_tvki0"]
-[ext_resource type="Script" path="res://scripts/price.gd" id="3_yg274"]
+[ext_resource type="Script" uid="uid://ci075tuyu8h5" path="res://scripts/price.gd" id="3_yg274"]
 
 [node name="buttons" type="Control" unique_id=59998802]
 layout_mode = 3
@@ -75,5 +75,20 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("2_q21lg")
 theme_override_font_sizes/normal_font_size = 8
 text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="plus" type="RichTextLabel" parent="." unique_id=124125395]
+texture_filter = 1
+layout_mode = 0
+offset_left = 15.0
+offset_top = -2.0
+offset_right = 47.0
+offset_bottom = 18.0
+mouse_filter = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("2_q21lg")
+theme_override_font_sizes/normal_font_size = 16
+text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
