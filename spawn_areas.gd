@@ -37,4 +37,4 @@ func _on_timer_timeout() -> void:
 			spawn_bee(position)
 		else:
 			spawn_bounty_hunter(position)
-	spawn_amnt += 0.1
+	spawn_amnt += 0.05

@@ -36,5 +36,4 @@ func _physics_process(delta: float) -> void:
 		"attack_speed":
 			if player.attack_cooldown == 0.1:
 				player.attack_cooldown = 0.5
-	print(effect_timer.time_left)
 	return

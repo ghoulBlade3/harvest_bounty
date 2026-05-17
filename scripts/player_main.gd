@@ -4,6 +4,8 @@ class_name player
 @onready var directional_animation_component: dir_anim_compoment = $directional_animation_component
 @onready var health_component: health_component = $health_component
 @onready var effect_holder: Node2D = $"../camera/effect_holder"
+@onready var left_ui: Node2D = $"../spawn_areas/left_spawn_area"
+@onready var right_ui: Node2D = $"../spawn_areas/right_spawn_area"
 
 
 const kAttack = preload("res://scenes/player_attack.tscn")
@@ -12,7 +14,7 @@ var hasBoughtSomethingForTheFirstTime: bool = false
 const kSpeed: float = 4800.0
 var speed: float = kSpeed
 var kills: int = 0
-var money: int = 10000
+var money: int = 24
 var canInteract: bool = true
 var scare_effect: bool = false
 
@@ -66,8 +68,12 @@ func _physics_process(delta: float) -> void:
 	pMoveDir *= speed * delta
 	velocity = pMoveDir
 		
-	if Input.is_action_just_pressed("attack"):
-		play_attack_animation(pMoveDir)
+	var mouse_pos = get_global_mouse_position()
+	if not (mouse_pos.x < left_ui.global_position.x or mouse_pos.x > right_ui.global_position.x):
+		if Input.is_action_just_pressed("attack"):
+			play_attack_animation(pMoveDir)
+	
+	
 
 	if canInteract:
 		directional_animation_component.dir_animation(pMoveDir)
