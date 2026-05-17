@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ds3y3n86l5veu" path="res://textures/blocks/farmland_dry.png" id="1_kaipa"]
 [ext_resource type="Script" uid="uid://dkfde0mtlxf31" path="res://scripts/farmland.gd" id="1_r62q1"]
 [ext_resource type="Texture2D" uid="uid://2bvw5n7eh2k4" path="res://textures/blocks/selection_overlay.png" id="3_hjufs"]
+[ext_resource type="AudioStream" uid="uid://bh2jdtkd20t3c" path="res://textures/audio/watering.wav" id="4_jfxha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wklu0"]
 size = Vector2(16, 16)
@@ -25,6 +26,9 @@ one_shot = true
 
 [node name="farm_collision" type="CollisionShape2D" parent="." unique_id=1996645968]
 shape = SubResource("RectangleShape2D_wklu0")
+
+[node name="watering_sound" type="AudioStreamPlayer2D" parent="." unique_id=2016152240]
+stream = ExtResource("4_jfxha")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

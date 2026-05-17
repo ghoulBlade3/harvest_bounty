@@ -7,6 +7,7 @@ extends Area2D
 @onready var grow_time: Timer = $grow_time
 @onready var player_area: Area2D = $"../../player/player_area"
 @onready var player_sprite: AnimatedSprite2D = $"../../player/player_sprite"
+@onready var watering_sound: AudioStreamPlayer2D = $watering_sound
 
 
 var isInReach: bool = false
@@ -21,6 +22,7 @@ const kGrowTime: float = 0.2
 
 var oldPlayerAnimation: StringName
 var oldPlayerSpeed: float
+var ranNum = RandomNumberGenerator.new()
 
 
 
@@ -42,6 +44,10 @@ func farmland_water() -> void:
 
 	isWet = true
 	farmland_sprite.texture = load("res://textures/blocks/farmland_wet.png")
+	
+	var pitch = ranNum.randf_range(0.85, 1.2)
+	watering_sound.pitch_scale = pitch
+	watering_sound.play()
 	return
 
 

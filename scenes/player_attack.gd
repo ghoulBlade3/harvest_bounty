@@ -7,7 +7,6 @@ extends Area2D
 var knockback_dir
 
 func _ready():
-	audio_stream_player.play()
 	attack_animation.play("attack")
 
 func _on_attack_animation_animation_finished() -> void:
